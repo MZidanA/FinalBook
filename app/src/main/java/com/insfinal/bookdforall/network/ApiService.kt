@@ -1,10 +1,10 @@
 package com.insfinal.bookdforall.network
 
-import com.example.booksforall.model.*
+import com.insfinal.bookdforall.model.*
 import retrofit2.Response
 import retrofit2.http.*
-import com.example.booksforall.model.Book
-import com.example.booksforall.model.CreateBookRequest
+import com.insfinal.bookdforall.model.Book
+import com.insfinal.bookdforall.model.CreateBookRequest
 
 interface ApiService {
     // existing endpoints...
@@ -52,46 +52,4 @@ interface ApiService {
     @DELETE("books/{id}")
     suspend fun deleteBook(@Path("id") id: Int): Response<Unit>
 
-    // --- Publishers ---
-    // GET /publishers: Get all publishers
-    @GET("publishers")
-    suspend fun getPublishers(): Response<List<Publisher>>
-
-    // POST /publishers: Create a new publisher
-    @POST("publishers")
-    suspend fun createPublisher(@Body req: PublisherInput): Response<Unit>
-
-    // GET /publishers/{id}: Get publisher by ID
-    @GET("publishers/{id}")
-    suspend fun getPublisher(@Path("id") id: Int): Response<Publisher>
-
-    // PUT /publishers/{id}: Update publisher by ID
-    @PUT("publishers/{id}")
-    suspend fun updatePublisher(@Path("id") id: Int, @Body req: PublisherInput): Response<Unit>
-
-    // DELETE /publishers/{id}: Delete publisher by ID
-    @DELETE("publishers/{id}")
-    suspend fun deletePublisher(@Path("id") id: Int): Response<Unit>
-
-
-    // --- PublisherRegistrations ---
-    // GET /publisher-registrations: Get all registrations
-    @GET("publisher-registrations")
-    suspend fun getPublisherRegistrations(): Response<List<PublisherRegistrationInput>> // Asumsi respons adalah list of input
-
-    // POST /publisher-registrations: Create a new registration
-    @POST("publisher-registrations")
-    suspend fun createPublisherRegistration(@Body req: PublisherRegistrationInput): Response<Unit>
-
-    // GET /publisher-registrations/{id}: Get registration by ID
-    @GET("publisher-registrations/{id}")
-    suspend fun getPublisherRegistration(@Path("id") id: Int): Response<PublisherRegistrationInput> // Asumsi respons adalah input tunggal
-
-    // PUT /publisher-registrations/{id}: Update registration by ID
-    @PUT("publisher-registrations/{id}")
-    suspend fun updatePublisherRegistration(@Path("id") id: Int, @Body req: PublisherRegistrationUpdate): Response<Unit>
-
-    // DELETE /publisher-registrations/{id}: Delete registration by ID
-    @DELETE("publisher-registrations/{id}")
-    suspend fun deletePublisherRegistration(@Path("id") id: Int): Response<Unit>
 }

@@ -46,8 +46,8 @@
 
     <ScrollView
         android:id="@+id/scrollView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@id/bottom_action_bar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -176,8 +176,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_description_title"
-                tools:text="Harry Potter dan Tawanan Azkaban adalah novel fantasi karya J.K. Rowling, yang merupakan buku ketiga dalam seri Harry Potter. Buku ini mengisahkan tahun ketiga Harry di Sekolah Sihir Hogwarts, di mana ia menghadapi ancaman dari Sirius Black, seorang tahanan yang kabur dari penjara sihir Azkaban dan diyakini sebagai pengikut setia Lord Voldemort.\n\nDalam cerita ini, Harry mengetahui lebih banyak tentang masa lalu orang tuanya dan rahasia yang tersembunyi di balik pengkhianatan yang menyebabkan kematian mereka. Ia juga berhadapan dengan Dementor, makhluk mengerikan yang menjaga Azkaban dan memiliki kemampuan menghisap kebahagiaan seseorang. Dengan bantuan Profesor Remus Lupin, Harry belajar cara menghadapi Dementor menggunakan mantra Patronus." />
-
+                tools:text="desk"/>
             <LinearLayout
                 android:id="@+id/layout_metadata"
                 android:layout_width="match_parent"
@@ -484,61 +483,63 @@
 
     <LinearLayout
         android:id="@+id/bottom_action_bar"
-        android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingHorizontal="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="#FFFFFF"
         android:elevation="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
+        <!-- Preview Button -->
         <Button
             android:id="@+id/btn_baca_pratinjau"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Baca Pratinjau"
             android:textColor="@color/colorPrimaryGreen"
-            app:strokeColor="@color/colorPrimaryGreen"
-            app:cornerRadius="8dp" />
+            app:cornerRadius="8dp"
+            app:strokeColor="@color/colorPrimaryGreen" />
 
+        <!-- Download Button -->
         <Button
             android:id="@+id/btn_download"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginStart="16dp"
-            android:text="Download"
+            android:layout_weight="1"
             android:backgroundTint="@color/colorPrimaryGreen"
+            android:text="Download"
             android:textColor="@color/colorOnPrimaryGreen"
             app:cornerRadius="8dp" />
 
+        <!-- Progress Bar -->
         <ProgressBar
             android:id="@+id/progress_bar_download"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_weight="1"
-            android:visibility="gone"
             android:indeterminate="true"
-            android:layout_marginStart="16dp" />
+            android:visibility="gone" />
 
+        <!-- Read Book Button -->
         <Button
             android:id="@+id/btn_read_book"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginStart="16dp"
-            android:text="Baca"
+            android:layout_weight="1"
             android:backgroundTint="@color/colorPrimaryGreen"
+            android:text="Baca"
             android:textColor="@color/colorOnPrimaryGreen"
-            app:cornerRadius="8dp"
-            android:visibility="gone" />
-
+            android:visibility="gone"
+            app:cornerRadius="8dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

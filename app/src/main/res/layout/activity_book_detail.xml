@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".ui.BookDetailActivity">
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="9:30"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_back_button"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/ic_arrow_back"
+        android:contentDescription="Back Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@android:color/black" />
+
+    <ImageView
+        android:id="@+id/iv_bookmark_icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_bookmark_border"
+        android:contentDescription="Bookmark Icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@android:color/black" />
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@id/bottom_action_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_back_button">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp">
+
+            <ImageView
+                android:id="@+id/iv_book_cover_detail"
+                android:layout_width="150dp"
+                android:layout_height="220dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:background="#E0E0E0"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/backgrounds/scenic"
+                android:contentDescription="Book Cover" />
+
+            <TextView
+                android:id="@+id/tv_book_title_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="24dp"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_book_cover_detail"
+                app:layout_constraintTop_toTopOf="@id/iv_book_cover_detail"
+                tools:text="Harry Potter dan Tawanan Azkaban" />
+
+            <TextView
+                android:id="@+id/tv_author_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@id/tv_book_title_detail"
+                app:layout_constraintStart_toEndOf="@id/iv_book_cover_detail"
+                app:layout_constraintTop_toBottomOf="@id/tv_book_title_detail"
+                tools:text="J.K. Rowling" />
+
+            <TextView
+                android:id="@+id/tv_pages_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/tv_book_title_detail"
+                app:layout_constraintStart_toEndOf="@id/iv_book_cover_detail"
+                app:layout_constraintTop_toBottomOf="@id/tv_author_detail"
+                tools:text="Halaman: 544" />
+
+            <LinearLayout
+                android:id="@+id/layout_rating_header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                app:layout_constraintEnd_toEndOf="@id/tv_book_title_detail"
+                app:layout_constraintStart_toEndOf="@id/iv_book_cover_detail"
+                app:layout_constraintTop_toBottomOf="@id/tv_pages_detail">
+
+                <TextView
+                    android:id="@+id/tv_rating_score_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="4.8"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="4dp"
+                    android:src="@drawable/ic_star_filled"
+                    android:contentDescription="Star Rating"
+                    app:tint="@color/colorStarRating" />
+
+                <TextView
+                    android:id="@+id/tv_rating_count_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    tools:text="(230)"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv_description_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:text="Deskripsi"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_book_cover_detail" />
+
+            <TextView
+                android:id="@+id/tv_book_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="8dp"
+                android:lineSpacingExtra="4dp"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_description_title"
+                tools:text="Harry Potter dan Tawanan Azkaban adalah novel fantasi karya J.K. Rowling, yang merupakan buku ketiga dalam seri Harry Potter. Buku ini mengisahkan tahun ketiga Harry di Sekolah Sihir Hogwarts, di mana ia menghadapi ancaman dari Sirius Black, seorang tahanan yang kabur dari penjara sihir Azkaban dan diyakini sebagai pengikut setia Lord Voldemort.\n\nDalam cerita ini, Harry mengetahui lebih banyak tentang masa lalu orang tuanya dan rahasia yang tersembunyi di balik pengkhianatan yang menyebabkan kematian mereka. Ia juga berhadapan dengan Dementor, makhluk mengerikan yang menjaga Azkaban dan memiliki kemampuan menghisap kebahagiaan seseorang. Dengan bantuan Profesor Remus Lupin, Harry belajar cara menghadapi Dementor menggunakan mantra Patronus." />
+
+            <LinearLayout
+                android:id="@+id/layout_metadata"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/tv_book_description"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bahasa"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_language"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Indonesia"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Penerbit"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_publisher"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="J.K. Rowling"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Halaman"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_page_count_metadata" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="544 Halaman"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tanggal Rilis"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_release_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="8 September 1999"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Penulis"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_penulis_metadata" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="J.K. Rowling"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Format"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_format_metadata" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="PDF"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_reviews_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:text="Nilai dan Ulasan"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_metadata" />
+
+            <LinearLayout
+                android:id="@+id/layout_overall_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_reviews_title">
+
+                <TextView
+                    android:id="@+id/tv_overall_rating_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    tools:text="4.8" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="4dp"
+                    android:src="@drawable/ic_star_filled"
+                    android:contentDescription="Star Rating"
+                    app:tint="@color/colorStarRating" />
+
+                <TextView
+                    android:id="@+id/tv_overall_rating_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="16sp"
+                    tools:text="(230)" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_review_list"
+                android:layout_width="match_parent"  android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/layout_overall_rating"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="12dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Udin"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Its an amazing book!!"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Idin"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Meh."
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_write_review_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:text="Beri nilai eBook ini"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_review_list" />
+
+            <TextView
+                android:id="@+id/tv_review_prompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="4dp"
+                android:text="Isi pendapat Anda"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_write_review_title" />
+
+            <LinearLayout
+                android:id="@+id/layout_rating_stars_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_review_prompt">
+
+                <ImageView
+                    android:id="@+id/iv_star1"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_star_border"
+                    android:contentDescription="Star 1"
+                    app:tint="@color/colorStarRating" />
+                <ImageView
+                    android:id="@+id/iv_star2"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="4dp"
+                    android:src="@drawable/ic_star_border"
+                    android:contentDescription="Star 2"
+                    app:tint="@color/colorStarRating" />
+                <ImageView
+                    android:id="@+id/iv_star3"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="4dp"
+                    android:src="@drawable/ic_star_border"
+                    android:contentDescription="Star 3"
+                    app:tint="@color/colorStarRating" />
+                <ImageView
+                    android:id="@+id/iv_star4"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="4dp"
+                    android:src="@drawable/ic_star_border"
+                    android:contentDescription="Star 4"
+                    app:tint="@color/colorStarRating" />
+                <ImageView
+                    android:id="@+id/iv_star5"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="4dp"
+                    android:src="@drawable/ic_star_border"
+                    android:contentDescription="Star 5"
+                    app:tint="@color/colorStarRating" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_write_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:text="Tulis ulasan"
+                android:textColor="@color/colorPrimaryGreen"
+                android:backgroundTint="@android:color/transparent"
+                android:stateListAnimator="@null"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_rating_stars_input"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottom_action_bar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:background="#FFFFFF"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <Button
+            android:id="@+id/btn_baca_pratinjau"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Baca Pratinjau"
+            android:textColor="@color/colorPrimaryGreen"
+            app:strokeColor="@color/colorPrimaryGreen"
+            app:cornerRadius="8dp" />
+
+        <Button
+            android:id="@+id/btn_download"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="16dp"
+            android:text="Download"
+            android:backgroundTint="@color/colorPrimaryGreen"
+            android:textColor="@color/colorOnPrimaryGreen"
+            app:cornerRadius="8dp" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar_download"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:indeterminate="true"
+            android:layout_marginStart="16dp" />
+
+        <Button
+            android:id="@+id/btn_read_book"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="16dp"
+            android:text="Baca"
+            android:backgroundTint="@color/colorPrimaryGreen"
+            android:textColor="@color/colorOnPrimaryGreen"
+            app:cornerRadius="8dp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

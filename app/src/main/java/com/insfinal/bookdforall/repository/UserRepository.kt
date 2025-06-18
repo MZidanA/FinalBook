@@ -1,7 +1,7 @@
 package com.insfinal.bookdforall.repository
 
-import com.example.booksforall.model.*
-import com.example.booksforall.network.RetrofitInstance
+import com.insfinal.bookdforall.model.*
+import com.insfinal.bookdforall.network.RetrofitInstance
 import retrofit2.Response
 
 class UserRepository {

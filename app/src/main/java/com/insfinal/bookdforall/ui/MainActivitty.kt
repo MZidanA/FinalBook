@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.booksforall.R
-import com.example.booksforall.databinding.ActivityMainBinding
+import com.insfinal.bookdforall.R
+import com.insfinal.bookdforall.databinding.ActivityMainBinding
 import com.insfinal.bookdforall.adapters.BookAdapter
 import com.insfinal.bookdforall.model.Book
 import java.text.SimpleDateFormat

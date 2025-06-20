@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.booksforall.databinding.ActivityRegisterBinding
+import com.insfinal.bookdforall.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
 

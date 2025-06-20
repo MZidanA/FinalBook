@@ -9,7 +9,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.example.booksforall.databinding.ActivityBookDetailBinding // Pastikan import ini benar
+import com.insfinal.bookdforall.databinding.ActivityBookDetailBinding // Pastikan import ini benar
 import com.insfinal.bookdforall.model.Book // Import Book data class
 
 class BookDetailActivity : AppCompatActivity() {
@@ -78,8 +78,8 @@ class BookDetailActivity : AppCompatActivity() {
     private fun displayBookDetails(book: Book) {
         Glide.with(this)
             .load(book.coverImageUrl)
-            .placeholder(com.example.booksforall.R.drawable.placeholder_book_cover)
-            .error(com.example.booksforall.R.drawable.placeholder_book_cover)
+            .placeholder(com.insfinal.bookdforall.R.drawable.placeholder_book_cover)
+            .error(com.insfinal.bookdforall.R.drawable.placeholder_book_cover)
             .into(binding.ivBookCoverDetail)
 
         binding.tvBookTitleDetail.text = book.judul

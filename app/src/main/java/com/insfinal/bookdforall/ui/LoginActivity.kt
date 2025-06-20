@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.booksforall.databinding.ActivityLoginBinding
+import com.insfinal.bookdforall.databinding.ActivityLoginBinding
 import com.insfinal.bookdforall.ui.MainActivity // Pastikan Anda memiliki MainActivity
 
 class LoginActivity : AppCompatActivity() {
@@ -48,9 +48,8 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.textViewForgotPassword.setOnClickListener {
-            Toast.makeText(this, "Lupa Password diklik", Toast.LENGTH_SHORT).show()
-            // Uncomment baris ini jika Anda memiliki ForgotPasswordActivity:
-            // startActivity(Intent(this, ForgotPasswordActivity::class.java))
+            val intent = Intent(this, ForgotPasswordActivity::class.java)
+            startActivity(intent)
         }
 
         binding.textViewRegister.setOnClickListener {

@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import com.example.booksforall.databinding.ActivitySplashBinding // Corrected package for generated binding class
+import com.insfinal.bookdforall.databinding.ActivitySplashBinding // Corrected package for generated binding class
 
 class SplashActivity : AppCompatActivity() { //
 

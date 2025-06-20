@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.booksforall.databinding.ItemBookHorizontalBinding
+import com.insfinal.bookdforall.databinding.ItemBookHorizontalBinding
 import com.insfinal.bookdforall.model.Book
 
 // Tambahkan parameter clickListener ke konstruktor
@@ -20,8 +20,8 @@ class BookAdapter(
 
             Glide.with(binding.ivBookCover.context)
                 .load(book.coverImageUrl)
-                .placeholder(com.example.booksforall.R.drawable.placeholder_book_cover)
-                .error(com.example.booksforall.R.drawable.placeholder_book_cover)
+                .placeholder(com.insfinal.bookdforall.R.drawable.placeholder_book_cover)
+                .error(com.insfinal.bookdforall.R.drawable.placeholder_book_cover)
                 .into(binding.ivBookCover)
 
             // Set OnClickListener untuk seluruh item

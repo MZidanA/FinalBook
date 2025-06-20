@@ -1,5 +1,6 @@
 package com.insfinal.bookdforall.network
 
+import com.insfinal.bookdforall.session.SessionManager
 import com.squareup.moshi.Moshi
 import okhttp3.JavaNetCookieJar
 import okhttp3.OkHttpClient
@@ -19,6 +20,16 @@ object RetrofitInstance {
 
     private val client = OkHttpClient.Builder()
         .cookieJar(JavaNetCookieJar(cookieManager))
+        .addInterceptor { chain ->
+            val token = SessionManager.getToken() // Ambil token dari penyimpanan lokal
+            val requestBuilder = chain.request().newBuilder()
+
+            if (!token.isNullOrEmpty()) {
+                requestBuilder.addHeader("Authorization", "Bearer $token")
+            }
+
+            chain.proceed(requestBuilder.build())
+        }
         .addInterceptor(HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         })

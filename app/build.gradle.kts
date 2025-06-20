@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.booksforall"
+    namespace = "com.insfinal.booksforall"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.booksforall"
+        applicationId = "com.insfinal.booksforall"
         minSdk = 24
         targetSdk = 35
         versionCode = 1

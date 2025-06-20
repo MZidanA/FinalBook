@@ -26,6 +26,7 @@
         <activity android:name="com.insfinal.bookdforall.ui.RegisterActivity" />
         <activity android:name="com.insfinal.bookdforall.ui.ForgotPasswordActivity" />
         <activity android:name="com.insfinal.bookdforall.ui.MainActivity" />
-        <activity android:name="com.insfinal.bookdforall.ui.BookDetailActivity" /> </application>
-
+        <activity android:name="com.insfinal.bookdforall.ui.BookDetailActivity" />
+        <activity android:name="com.insfinal.bookdforall.ui.AdminDashboardActivity" />
+    </application>
 </manifest>

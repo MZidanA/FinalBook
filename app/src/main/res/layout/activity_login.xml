@@ -16,29 +16,32 @@
         android:text="Login"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@color/textColorDefault" /> <com.google.android.material.textfield.TextInputLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="32dp"
-    app:boxBackgroundMode="filled" app:boxBackgroundColor="@color/white"> <com.google.android.material.textfield.TextInputEditText
-    android:id="@+id/editTextEmailLogin"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="Email"
-    android:inputType="textEmailAddress"
-    android:textColor="@color/textColorDefault"
-    android:textColorHint="@color/textColorHint" />
+        android:textColor="@color/textColorDefault" />
 
-</com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:boxBackgroundMode="filled"
+        app:boxBackgroundColor="@color/white">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextEmailLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/textColorDefault"
+            android:textColorHint="@color/textColorHint"
+            android:minHeight="48dp" /> </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:endIconMode="password_toggle"
-        app:endIconTint="@color/colorPrimaryGreen" app:boxBackgroundMode="filled"
+        app:endIconTint="@color/colorPrimaryGreen"
+        app:boxBackgroundMode="filled"
         app:boxBackgroundColor="@color/white">
-
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextPasswordLogin"
             android:layout_width="match_parent"
@@ -46,9 +49,8 @@
             android:hint="Password"
             android:inputType="textPassword"
             android:textColor="@color/textColorDefault"
-            android:textColorHint="@color/textColorHint" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+            android:textColorHint="@color/textColorHint"
+            android:minHeight="48dp" /> </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/textViewForgotPassword"
@@ -61,13 +63,16 @@
         android:minHeight="48dp"
         android:paddingVertical="8dp"
         android:text="Lupa Password?"
-        android:textColor="@color/colorPrimaryGreen" /> <Button
-    android:id="@+id/buttonLogin"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="24dp"
-    android:text="Login"
-    android:backgroundTint="@color/colorPrimaryGreen" /> <LinearLayout
+        android:textColor="@color/colorPrimaryGreen" />
+
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Login"
+        android:backgroundTint="@color/colorPrimaryGreen"
+        android:minHeight="48dp" /> <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="16dp"
@@ -88,11 +93,8 @@
         android:clickable="true"
         android:focusable="true"
         android:minHeight="48dp"
-        android:paddingVertical="20dp"
-        android:text="Daftar"
+        android:paddingVertical="8dp" android:text="Daftar"
         android:textColor="@color/colorPrimaryGreen"
         android:textStyle="bold" />
-
 </LinearLayout>
-
 </LinearLayout>

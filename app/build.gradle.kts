@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id ("kotlin-parcelize")
-
 }
 
 android {
@@ -77,8 +76,35 @@ dependencies {
     implementation(libs.androidx.activity)
     annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
 
+    // Fragment KTX (for easy fragment transactions and arguments)
+    implementation("androidx.fragment:fragment-ktx:1.6.0")
+
+    // Room Persistence Library (for local database storage)
+    // Remember to add 'kapt' plugin at the top for Room annotation processing:
+    // id 'kotlin-kapt' (instead of kotlin-parcelize or add both)
+    // If you add kapt, change annotationProcessor("com.github.bumptech.glide:compiler:4.16.0") to kapt("com.github.bumptech.glide:compiler:4.16.0")
+    // implementation("androidx.room:room-runtime:2.6.1")
+    // kapt("androidx.room:room-compiler:2.6.1")
+    // implementation("androidx.room:room-ktx:2.6.1") // Kotlin Extensions and Coroutines support for Room
+
+    // Paging Library (for efficiently loading large lists of data)
+    // implementation("androidx.paging:paging-runtime-ktx:3.2.1")
+
+    // DataStore (for modern data storage, preferences or typed objects)
+    // implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    // Hilt (Dependency Injection) - Requires adding Hilt plugin at the top:
+    // id 'com.google.dagger.hilt.android' version '2.44' apply false in project-level build.gradle
+    // id 'dagger.hilt.android.plugin' at app-level
+    // implementation("com.google.dagger:hilt-android:2.49")
+    // kapt("com.google.dagger:hilt-compiler:2.49")
+
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Optional: Mockito for unit testing with mocks
+    // testImplementation("org.mockito:mockito-core:4.8.0")
+    // androidTestImplementation("org.mockito:mockito-android:4.8.0")
 }

@@ -78,6 +78,8 @@ dependencies {
     // Fragment KTX (for easy fragment transactions and arguments)
     implementation("androidx.fragment:fragment-ktx:1.6.0")
 
+    implementation("com.squareup.moshi:moshi-kotlin:1.15.0") // For Kotlin reflection
+    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0") // For HttpLoggingInterceptor
     // Room Persistence Library (for local database storage)
     // Remember to add 'kapt' plugin at the top for Room annotation processing:
     // id 'kotlin-kapt' (instead of kotlin-parcelize or add both)
@@ -103,6 +105,17 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+
+    // Glide for image loading
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
+
+    // Kotlin Coroutines for Handler replacements (optional, but good practice for async)
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+    // For Parcelable. Make sure you also have `id 'kotlin-parcelize'` in your plugins block.
+    implementation ("org.jetbrains.kotlin:kotlin-parcelize-runtime:1.9.0")
     // Optional: Mockito for unit testing with mocks
     // testImplementation("org.mockito:mockito-core:4.8.0")
     // androidTestImplementation("org.mockito:mockito-android:4.8.0")

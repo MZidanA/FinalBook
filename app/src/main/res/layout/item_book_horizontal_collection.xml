@@ -19,17 +19,20 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_book" /> <TextView
-        android:id="@+id/tv_book_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:gravity="center_horizontal"
-        android:maxLines="2"
-        android:ellipsize="end"
-        android:textColor="@android:color/black"
-        android:textSize="14sp"
-        tools:text="Judul Buku Panjang Sekali" />
+            android:src="@drawable/placeholder_book_cover"
+            tools:src="@tools:sample/backgrounds/scenic[1]" />
+
+        <TextView
+            android:id="@+id/tv_book_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center_horizontal"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            tools:text="Judul Buku Panjang Sekali" />
 
         <LinearLayout
             android:layout_width="match_parent"

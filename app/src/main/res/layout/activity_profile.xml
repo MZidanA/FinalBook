@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackgroundLight"
+    android:padding="24dp">
+
+    <!-- Avatar -->
+    <FrameLayout
+        android:id="@+id/avatar_container"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/avatar_circle_border"
+        android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="Avatar"
+            android:scaleType="center"
+            android:src="@drawable/ic_profile" />
+    </FrameLayout>
+
+    <!-- Nama -->
+    <TextView
+        android:id="@+id/tv_nama"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nama Pengguna"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/avatar_container" />
+
+    <!-- Email -->
+    <TextView
+        android:id="@+id/tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="email@example.com"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_nama" />
+
+    <!-- Button Group -->
+    <LinearLayout
+        android:id="@+id/layout_button_stack"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/rounded_button_group_background"
+        android:clipToPadding="false"
+        android:elevation="2dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_email"
+        app:layout_constraintWidth_percent="0.9">
+
+        <!-- Ubah Profil -->
+        <Button
+            android:id="@+id/btn_ubah_profil"
+            style="@style/ProfileButtonStyle"
+            android:drawableStart="@drawable/edit"
+            android:drawablePadding="16dp"
+            android:text="Ubah Profil"
+            android:textColor="#263238" />
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="#AAFFFFFF" />
+
+        <!-- Ubah Password -->
+        <Button
+            android:id="@+id/btn_ubah_password"
+            style="@style/ProfileButtonStyle"
+            android:drawableStart="@drawable/lock"
+            android:drawablePadding="16dp"
+            android:text="Ubah Kata Sandi"
+            android:textColor="#263238" />
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="#AAFFFFFF" />
+
+        <!-- Logout -->
+        <Button
+            android:id="@+id/btn_logout"
+            style="@style/ProfileButtonStyle"
+            android:drawableStart="@drawable/logout"
+            android:drawablePadding="16dp"
+            android:text="Keluar"
+            android:textColor="#263238" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

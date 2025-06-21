@@ -6,6 +6,14 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.insfinal.bookdforall.databinding.ActivityRegisterBinding
+import com.insfinal.bookdforall.network.RetrofitInstance // Import RetrofitInstance
+import com.insfinal.bookdforall.model.CreateUserRequest // Import CreateUserRequest
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
+import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -24,24 +32,36 @@ class RegisterActivity : AppCompatActivity() {
             if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Semua kolom harus diisi", Toast.LENGTH_SHORT).show()
             } else {
-                // --- LOGIKA PENDAFTARAN SEBENARNYA AKAN DITEMPATKAN DI SINI ---
-                // Saat ini, ini hanya simulasi keberhasilan.
-                // Dalam aplikasi nyata:
-                // 1. Panggil API backend untuk mendaftarkan pengguna baru.
-                // 2. Tangani respons dari server (berhasil/gagal).
-                // 3. Jika berhasil, mungkin simpan token sesi atau status login.
+                CoroutineScope(Dispatchers.IO).launch {
+                    try {
+                        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                        val tanggalDaftar = sdf.format(Date())
+                        val request = CreateUserRequest(name, email, password, tanggalDaftar, "free") // Default status_langganan
 
-                Toast.makeText(this, "Pendaftaran berhasil untuk: $email", Toast.LENGTH_LONG).show()
+                        val response = RetrofitInstance.api.createUser(request) // Menggunakan RetrofitInstance.api
 
-                // Contoh: Setelah pendaftaran berhasil, arahkan ke LoginActivity
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-                finish() // Tutup RegisterActivity
+                        withContext(Dispatchers.Main) {
+                            if (response.isSuccessful) {
+                                Toast.makeText(this@RegisterActivity, "Pendaftaran berhasil untuk: $email", Toast.LENGTH_LONG).show()
+                                val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            } else {
+                                val errorBody = response.errorBody()?.string()
+                                Toast.makeText(this@RegisterActivity, "Pendaftaran gagal: ${errorBody ?: response.message()}", Toast.LENGTH_LONG).show()
+                            }
+                        }
+                    } catch (e: Exception) {
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(this@RegisterActivity, "Error pendaftaran: ${e.message}", Toast.LENGTH_LONG).show()
+                            e.printStackTrace()
+                        }
+                    }
+                }
             }
         }
 
         binding.tvLoginLink.setOnClickListener {
-            // Arahkan kembali ke LoginActivity
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()

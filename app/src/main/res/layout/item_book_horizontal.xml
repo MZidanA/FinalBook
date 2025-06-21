@@ -2,8 +2,10 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="120dp"
-    android:layout_height="250dp" android:layout_marginStart="8dp"
+    android:layout_height="250dp"
+    android:layout_marginStart="8dp"
     android:layout_marginEnd="8dp"
     android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp"
@@ -22,7 +24,8 @@
             android:layout_height="150dp"
             android:scaleType="centerCrop"
             android:src="@drawable/placeholder_book_cover"
-            android:contentDescription="Book Cover" />
+            android:contentDescription="Book Cover"
+            tools:src="@tools:sample/backgrounds/scenic[1]" />
 
         <TextView
             android:id="@+id/tv_book_title"
@@ -34,7 +37,8 @@
             android:textSize="14sp"
             android:maxLines="2"
             android:ellipsize="end"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="Judul Buku Panjang Sekali" />
 
         <TextView
             android:id="@+id/tv_book_author"
@@ -44,7 +48,8 @@
             android:textColor="@android:color/darker_gray"
             android:textSize="12sp"
             android:singleLine="true"
-            android:ellipsize="end" />
+            android:ellipsize="end"
+            tools:text="Nama Penulis" />
 
     </LinearLayout>
 

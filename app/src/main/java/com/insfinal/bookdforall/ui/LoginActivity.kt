@@ -1,12 +1,18 @@
 // LoginActivity.kt
 package com.insfinal.bookdforall.ui
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.insfinal.bookdforall.databinding.ActivityLoginBinding
-import com.insfinal.bookdforall.ui.MainActivity // Pastikan Anda memiliki MainActivity
+import com.insfinal.bookdforall.network.RetrofitInstance // Import RetrofitInstance
+import com.insfinal.bookdforall.model.LoginRequest // Import LoginRequest
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class LoginActivity : AppCompatActivity() {
 
@@ -24,25 +30,42 @@ class LoginActivity : AppCompatActivity() {
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Email dan password tidak boleh kosong", Toast.LENGTH_SHORT).show()
             } else {
-                // --- LOGIKA LOGIN SEBENARNYA AKAN DITEMPATKAN DI SINI ---
-                // Saat ini, ini hanya simulasi keberhasilan.
-                // Dalam aplikasi nyata:
-                // 1. Panggil API backend untuk memverifikasi kredensial.
-                // 2. Tangani respons dari server (berhasil/gagal).
-                // 3. Jika berhasil, simpan status login (misal, Shared Preferences)
-                //    dan token autentikasi (jika ada).
+                CoroutineScope(Dispatchers.IO).launch {
+                    try {
+                        val request = LoginRequest(email, password)
+                        val response = RetrofitInstance.api.login(request) // Menggunakan RetrofitInstance.api
 
-                // SIMULASI LOGIN BERHASIL:
-                // Misalnya, jika email adalah "test@example.com" dan password "password123"
-                if (email == "test@example.com" && password == "password123") {
-                    Toast.makeText(this, "Login berhasil!", Toast.LENGTH_SHORT).show()
+                        withContext(Dispatchers.Main) {
+                            if (response.isSuccessful) {
+                                val loginResponse = response.body()
+                                if (loginResponse != null) {
+                                    // Simpan user_id, nama, email, dan status login ke SharedPreferences
+                                    val sharedPrefs = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+                                    sharedPrefs.edit()
+                                        .putBoolean("is_logged_in", true)
+                                        .putInt("user_id", loginResponse.user.id)
+                                        .putString("user_name", loginResponse.user.nama)
+                                        .putString("user_email", loginResponse.user.email)
+                                        .apply()
 
-                    // Arahkan ke MainActivity setelah login berhasil
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish() // Tutup LoginActivity agar pengguna tidak bisa kembali dengan tombol back
-                } else {
-                    Toast.makeText(this, "Email atau password salah.", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this@LoginActivity, loginResponse.message, Toast.LENGTH_SHORT).show()
+                                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                    startActivity(intent)
+                                    finish()
+                                } else {
+                                    Toast.makeText(this@LoginActivity, "Login berhasil, namun respons user kosong.", Toast.LENGTH_SHORT).show()
+                                }
+                            } else {
+                                val errorBody = response.errorBody()?.string()
+                                Toast.makeText(this@LoginActivity, "Login gagal: ${errorBody ?: response.message()}", Toast.LENGTH_LONG).show()
+                            }
+                        }
+                    } catch (e: Exception) {
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(this@LoginActivity, "Error koneksi: ${e.message}", Toast.LENGTH_LONG).show()
+                            e.printStackTrace()
+                        }
+                    }
                 }
             }
         }
@@ -53,7 +76,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.textViewRegister.setOnClickListener {
-            // Arahkan ke RegisterActivity
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }

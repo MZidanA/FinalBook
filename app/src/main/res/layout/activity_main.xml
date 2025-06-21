@@ -65,8 +65,10 @@
             android:layout_marginTop="16dp"
             app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card_search">
+            app:layout_constraintTop_toBottomOf="@id/card_search"
+            app:layout_constraintVertical_bias="1.0">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -88,12 +90,13 @@
                     android:id="@+id/rv_lanjutkan_baca"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_book_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:clipToPadding="false"
                     android:orientation="horizontal"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:clipToPadding="false" android:layout_marginTop="8dp" />
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_book_horizontal" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -109,12 +112,13 @@
                     android:id="@+id/rv_trending"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_book_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:clipToPadding="false"
                     android:orientation="horizontal"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:clipToPadding="false" android:layout_marginTop="8dp" />
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_book_horizontal" />
             </LinearLayout>
         </ScrollView>
 

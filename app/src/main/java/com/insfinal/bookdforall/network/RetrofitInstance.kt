@@ -10,7 +10,7 @@ import java.net.CookieManager
 import java.net.CookiePolicy
 
 object RetrofitInstance {
-    private const val BASE_URL = "http://localhost:3000/api"
+    private const val BASE_URL = "http://localhost:3000/api/"
 
     // CookieManager untuk menyimpan cookie session
     private val cookieManager = CookieManager().apply {

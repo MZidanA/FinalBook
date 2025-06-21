@@ -6,6 +6,12 @@
     <color name="colorGreyText">#757575</color>
     <color name="colorPrimaryGreen">#4CAF50</color>
     <color name="colorOnPrimaryGreen">#FFFFFF</color>
-    <color name="colorBackgroundLight">#F8F8F8</color> <color name="textColorDefault">#212121</color>
+    <color name="colorBackgroundLight">#F8F8F8</color>
+    <color name="textColorDefault">#212121</color>
     <color name="textColorHint">#757575</color>
+    <color name="bottom_nav_item_selected">@color/colorPrimaryGreen</color>
+    <color name="bottom_nav_item_unselected">@color/textColorHint</color>
+    <color name="tab_indicator_selected_text_color">@color/colorPrimaryGreen</color>
+    <color name="tab_unselected_text_color">#757575</color>
+    <color name="profile_button_text_color">#263238</color>
 </resources>

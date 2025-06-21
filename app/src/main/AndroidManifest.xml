@@ -4,6 +4,7 @@
 
     <application
         android:allowBackup="true"
+        android:name="com.insfinal.bookdforall.App"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -29,6 +30,7 @@
         <activity android:name="com.insfinal.bookdforall.ui.ForgotPasswordActivity" />
         <activity android:name="com.insfinal.bookdforall.ui.MainActivity" />
         <activity android:name="com.insfinal.bookdforall.ui.BookDetailActivity" />
+        <activity android:name="com.insfinal.bookdforall.ui.EditProfileActivity" />
     </application>
 
 </manifest>

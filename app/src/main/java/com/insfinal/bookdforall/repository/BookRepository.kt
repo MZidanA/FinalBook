@@ -13,4 +13,7 @@ class BookRepository {
     suspend fun create(req: CreateBookRequest): Response<Unit> = api.createBook(req)
     suspend fun update(id: Int, req: CreateBookRequest): Response<Unit> = api.updateBook(id, req)
     suspend fun delete(id: Int): Response<Unit> = api.deleteBook(id)
+    suspend fun getContinueReadingBooks() = api.getContinueReading()
+    suspend fun getTrendingBooks() = api.getTrendingBooks()
+
 }

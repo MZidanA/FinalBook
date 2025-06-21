@@ -59,4 +59,10 @@ interface ApiService {
     @DELETE("books/{id}")
     suspend fun deleteBook(@Path("id") id: Int): Response<Unit>
 
+    @GET("books/continue")
+    suspend fun getContinueReading(): Response<List<Book>>
+
+    @GET("books/trending")
+    suspend fun getTrendingBooks(): Response<List<Book>>
 }
+

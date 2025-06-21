@@ -10,4 +10,5 @@
     <color name="textColorDefault">#212121</color>
     <color name="textColorHint">#757575</color>
     <color name="colorPrimaryDarkGreen">#3A853C</color>
+    <color name="textPrimary">#263238</color>
 </resources>

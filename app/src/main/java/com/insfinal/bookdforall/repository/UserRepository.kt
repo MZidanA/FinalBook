@@ -13,6 +13,8 @@ class UserRepository {
     suspend fun updateUser(id: Int, req: CreateUserRequest) = api.updateUser(id, req)
     suspend fun delete(id: Int) = api.deleteUser(id)
     suspend fun getCurrentUser(): Response<User> = api.getCurrentUser()
-
+    suspend fun changePassword(oldPass: String, newPass: String): Response<Unit> {
+        return api.changePassword(ChangePasswordRequest(oldPass, newPass))
+    }
     suspend fun login(req: LoginRequest): Response<LoginResponse> = api.login(req)
 }

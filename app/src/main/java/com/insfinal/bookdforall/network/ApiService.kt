@@ -5,6 +5,7 @@ import retrofit2.Response
 import retrofit2.http.*
 import com.insfinal.bookdforall.model.Book
 import com.insfinal.bookdforall.model.CreateBookRequest
+import com.insfinal.bookdforall.model.ChangePasswordRequest
 
 interface ApiService {
     // existing endpoints...
@@ -27,8 +28,14 @@ interface ApiService {
     @PUT("users/{id}")
     suspend fun updateUser(@Path("id") id: Int, @Body body: CreateUserRequest): Response<Unit>
 
+    @GET("users/me")
+    suspend fun getCurrentUser(): Response<User>
+
     @DELETE("users/{id}")
     suspend fun deleteUser(@Path("id") id: Int): Response<Unit>
+
+    @PUT("users/change-password")
+    suspend fun changePassword(@Body req: ChangePasswordRequest): Response<Unit>
 
     // Admins
     @GET("admins") suspend fun getAdmins(): Response<List<Admin>>

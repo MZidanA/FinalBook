@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="profile_activity" type="id">Profile Activity</item>
+    <item name="profile_activity" type="id" />
 </resources>

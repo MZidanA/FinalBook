@@ -2,7 +2,8 @@ package com.insfinal.bookdforall.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.ui.layout.layout
+import androidx.appcompat.widget.Toolbar
+//import androidx.compose.ui.layout.layout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -43,7 +44,7 @@ class ManageBooksActivity {
             setContentView(R.layout.activity_manage_books)
 
             // 1. Setup Toolbar
-            val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbarManageBooks)
+            val toolbar: Toolbar = findViewById(R.id.toolbarManageBooks)
             setSupportActionBar(toolbar)
             supportActionBar?.title = "Kelola Buku"
             supportActionBar?.setDisplayHomeAsUpEnabled(true) // Menampilkan tombol kembali

@@ -3,7 +3,7 @@ package com.insfinal.bookdforall.ui
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.booksforall.databinding.ActivityForgotPasswordBinding // Corrected package for generated binding class
+import com.insfinal.booksforall.databinding.ActivityForgotPasswordBinding // Corrected package for generated binding class
 
 class ForgotPasswordActivity : AppCompatActivity() { //
 

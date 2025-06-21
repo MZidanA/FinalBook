@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.button.MaterialButton
-import com.insfinal.bookdforall.R
+//import com.insfinal.bookdforall.R
 import com.insfinal.booksforall.databinding.ActivityAdminDashboardBinding
 
 class AdminDashboardActivity : AppCompatActivity() {
@@ -24,10 +24,10 @@ class AdminDashboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Menghubungkan Activity ini dengan layout XML: activity_admin_dashboard.xml
-        setContentView(binding.layout.activity_admin_dashboard)
+        setContentView(com.insfinal.booksforall.R.layout.activity_admin_dashboard)
 
         // 1. Inisialisasi Toolbar
-        toolbar = findViewById(binding.id.toolbarAdminDashboard)
+        toolbar = findViewById(com.insfinal.booksforall.R.id.toolbarAdminDashboard)
         setSupportActionBar(toolbar) // Mengatur toolbar sebagai ActionBar
         supportActionBar?.apply { // Menggunakan apply scope function untuk null safety
             title = "Admin Dashboard" // Mengatur judul toolbar
@@ -37,10 +37,10 @@ class AdminDashboardActivity : AppCompatActivity() {
 
 
         // 2. Inisialisasi TextViews untuk Ringkasan Aplikasi
-        totalUsersTextView = findViewById(binding.id.totalUsersTextView)
-        totalBooksTextView = findViewById(binding.id.totalBooksTextView)
-        totalBooksTextView = findViewById(binding.id.totalBooksTextView)
-        newReportsTextView = findViewById(binding.id.newReportsTextView)
+        totalUsersTextView = findViewById(com.insfinal.booksforall.R.id.totalUsersTextView)
+        totalBooksTextView = findViewById(com.insfinal.booksforall.R.id.totalBooksTextView)
+        totalBooksTextView = findViewById(com.insfinal.booksforall.R.id.totalBooksTextView)
+        newReportsTextView = findViewById(com.insfinal.booksforall.R.id.newReportsTextView)
 
         // TODO: Ambil data aktual dari database/API (misalnya Firebase Firestore)
         // Ini hanya contoh data statis:

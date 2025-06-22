@@ -23,7 +23,7 @@ class EditProfileActivity : AppCompatActivity() {
     fun User.toCreateUserRequest(nama: String, email: String) = CreateUserRequest(
         nama = nama,
         email = email,
-        password = this.password ?: "", // atau input ulang dari UI jika perlu
+        password = this.password ?: "",
         tanggalDaftar = this.tanggalDaftar,
         statusLangganan = this.statusLangganan
     )

@@ -7,7 +7,6 @@ import com.bumptech.glide.Glide
 import com.example.booksforall.databinding.ItemBookHorizontalBinding
 import com.insfinal.bookdforall.model.Book
 
-// Tambahkan parameter clickListener ke konstruktor
 class BookAdapter(
     private val books: List<Book>,
     private val onItemClick: (Book) -> Unit // Lambda untuk menangani klik item
@@ -25,9 +24,8 @@ class BookAdapter(
                 .error(com.example.booksforall.R.drawable.placeholder_book_cover)
                 .into(binding.ivBookCover)
 
-            // Set OnClickListener untuk seluruh item
             binding.root.setOnClickListener {
-                onItemClick(book) // Panggil lambda ketika item diklik
+                onItemClick(book)
             }
         }
     }

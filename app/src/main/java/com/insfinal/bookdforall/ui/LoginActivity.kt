@@ -28,23 +28,12 @@ class LoginActivity : AppCompatActivity() {
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Email dan password tidak boleh kosong", Toast.LENGTH_SHORT).show()
             } else {
-                // --- LOGIKA LOGIN SEBENARNYA AKAN DITEMPATKAN DI SINI ---
-                // Saat ini, ini hanya simulasi keberhasilan.
-                // Dalam aplikasi nyata:
-                // 1. Panggil API backend untuk memverifikasi kredensial.
-                // 2. Tangani respons dari server (berhasil/gagal).
-                // 3. Jika berhasil, simpan status login (misal, Shared Preferences)
-                //    dan token autentikasi (jika ada).
-
-                // SIMULASI LOGIN BERHASIL:
-                // Misalnya, jika email adalah "test@example.com" dan password "password123"
                 if (email == "test@example.com" && password == "password123") {
                     Toast.makeText(this, "Login berhasil!", Toast.LENGTH_SHORT).show()
 
-                    // Arahkan ke MainActivity setelah login berhasil
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
-                    finish() // Tutup LoginActivity agar pengguna tidak bisa kembali dengan tombol back
+                    finish()
                 } else {
                     Toast.makeText(this, "Email atau password salah.", Toast.LENGTH_SHORT).show()
                 }
@@ -56,7 +45,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.textViewRegister.setOnClickListener {
-            // Arahkan ke RegisterActivity
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }

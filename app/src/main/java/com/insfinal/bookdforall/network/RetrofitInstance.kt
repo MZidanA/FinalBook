@@ -11,7 +11,7 @@ import java.net.CookieManager
 import java.net.CookiePolicy
 
 object RetrofitInstance {
-    const val BASE_URL = "http://10.0.2.2:3000/api/"    // CookieManager untuk menyimpan cookie session
+    const val BASE_URL = "http://10.0.2.2:3000/api/"
     private val cookieManager = CookieManager().apply {
         setCookiePolicy(CookiePolicy.ACCEPT_ALL)
     }
@@ -19,7 +19,7 @@ object RetrofitInstance {
     private val client = OkHttpClient.Builder()
         .cookieJar(JavaNetCookieJar(cookieManager))
         .addInterceptor { chain ->
-            val token = SessionManager.getToken() // Ambil token dari penyimpanan lokal
+            val token = SessionManager.getToken()
             val requestBuilder = chain.request().newBuilder()
 
             if (!token.isNullOrEmpty()) {

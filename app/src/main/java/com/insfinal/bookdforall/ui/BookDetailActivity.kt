@@ -21,7 +21,7 @@ import java.io.File
 class BookDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBookDetailBinding
-    private var isBookDownloaded: Boolean = false // Tambahkan status ini
+    private var isBookDownloaded: Boolean = false
     private val handler = Handler(Looper.getMainLooper())
     private var downloadProgress: Int = 0
     private var book: Book? = null
@@ -39,7 +39,7 @@ class BookDetailActivity : AppCompatActivity() {
         }
 
         binding.btnBack.setOnClickListener {
-            onBackPressedDispatcher.onBackPressed() // Menggunakan modern back navigation
+            onBackPressedDispatcher.onBackPressed()
         }
 
         binding.btnDownload.setOnClickListener {
@@ -48,7 +48,6 @@ class BookDetailActivity : AppCompatActivity() {
 
         binding.btnBacaPratinjau.setOnClickListener {
             Toast.makeText(this, "Membuka Pratinjau untuk: ${book?.judul}", Toast.LENGTH_SHORT).show()
-            // Implementasi logika baca pratinjau (misal: buka PDF viewer)
         }
 
         binding.btnBacaSingle.setOnClickListener {
@@ -177,7 +176,7 @@ class BookDetailActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        handler.removeCallbacksAndMessages(null) // Hapus callback untuk menghindari memory leak
+        handler.removeCallbacksAndMessages(null)
     }
 
     companion object {

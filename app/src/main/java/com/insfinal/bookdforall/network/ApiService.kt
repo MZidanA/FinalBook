@@ -8,13 +8,11 @@ import com.insfinal.bookdforall.model.CreateBookRequest
 import com.insfinal.bookdforall.model.ChangePasswordRequest
 
 interface ApiService {
-    // existing endpoints...
     @POST("auth/login")
     suspend fun login(@Body req: LoginRequest): Response<LoginResponse>
 
     @POST("auth/logout")
     suspend fun logout(): Response<Unit>
-    // Base URL akan ditentukan di RetrofitInstance
     @GET("users")
     suspend fun getUsers(): Response<List<User>>
 
@@ -24,7 +22,6 @@ interface ApiService {
     @POST("users")
     suspend fun createUser(@Body body: CreateUserRequest): Response<Unit>
 
-    // jika ingin endpoint buang akun, update dsb:
     @PUT("users/{id}")
     suspend fun updateUser(@Path("id") id: Int, @Body body: CreateUserRequest): Response<Unit>
 
@@ -43,7 +40,6 @@ interface ApiService {
     @POST("auth/reset-password")
     suspend fun setNewPassword(@Body req: SetNewPasswordRequest): Response<Unit>
 
-    // Admins
     @GET("admins") suspend fun getAdmins(): Response<List<Admin>>
     @GET("admins/{id}") suspend fun getAdmin(@Path("id") id: Int): Response<Admin>
     @POST("admins") suspend fun createAdmin(@Body req: CreateAdminRequest): Response<Unit>

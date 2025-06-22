@@ -39,14 +39,12 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: android.view.View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Set default avatar jika belum dipilih
         if (selectedImageUri == null) {
             binding.ivAvatar.setImageURI(
                 Uri.parse("android.resource://${requireActivity().packageName}/drawable/profile")
             )
         }
 
-        // Ambil data user
         viewLifecycleOwner.lifecycleScope.launch {
             try {
                 val response = UserRepository().getCurrentUser()
@@ -63,7 +61,6 @@ class ProfileFragment : Fragment() {
             }
         }
 
-        // Aksi klik
         binding.ivAvatar.setOnClickListener {
             pickImageLauncher.launch("image/*")
         }

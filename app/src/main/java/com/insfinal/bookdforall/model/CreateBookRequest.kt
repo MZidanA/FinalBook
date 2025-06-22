@@ -2,9 +2,6 @@ package com.insfinal.bookdforall.model
 
 import com.squareup.moshi.Json
 
-/**
- * Payload untuk membuat atau memperbarui buku
- */
 data class CreateBookRequest(
     val judul: String,
     val penulis: String,

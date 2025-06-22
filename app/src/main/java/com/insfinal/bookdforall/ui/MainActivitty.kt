@@ -7,7 +7,7 @@ import com.example.booksforall.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding  // Tetap gunakan binding agar navigasi bottom tetap nyaman
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +31,6 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_Collection -> {
-                    // Ganti dengan fragment koleksi jika sudah ada
                     true
                 }
                 R.id.nav_profile -> {

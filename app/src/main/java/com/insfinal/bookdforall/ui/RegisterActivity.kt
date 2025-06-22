@@ -24,13 +24,6 @@ class RegisterActivity : AppCompatActivity() {
             if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Semua kolom harus diisi", Toast.LENGTH_SHORT).show()
             } else {
-                // --- LOGIKA PENDAFTARAN SEBENARNYA AKAN DITEMPATKAN DI SINI ---
-                // Saat ini, ini hanya simulasi keberhasilan.
-                // Dalam aplikasi nyata:
-                // 1. Panggil API backend untuk mendaftarkan pengguna baru.
-                // 2. Tangani respons dari server (berhasil/gagal).
-                // 3. Jika berhasil, mungkin simpan token sesi atau status login.
-
                 Toast.makeText(this, "Pendaftaran berhasil untuk: $email", Toast.LENGTH_LONG).show()
 
                 // Contoh: Setelah pendaftaran berhasil, arahkan ke LoginActivity

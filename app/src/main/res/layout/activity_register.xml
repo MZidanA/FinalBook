@@ -20,11 +20,10 @@
         android:textColor="@color/textColorDefault" />
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/MyTextInputLayout"
+        style="@style/InputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        app:boxBackgroundMode="filled"
         app:boxBackgroundColor="@color/white">
         <com.google.android.material.textfield.TextInputEditText
             style="@style/MyTextInputEditText"
@@ -38,11 +37,10 @@
             android:minHeight="48dp" /> </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/MyTextInputLayout"
+        style="@style/InputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:boxBackgroundMode="filled"
         app:boxBackgroundColor="@color/white">
         <com.google.android.material.textfield.TextInputEditText
             style="@style/MyTextInputEditText"
@@ -56,13 +54,12 @@
             android:minHeight="48dp" /> </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/MyTextInputLayout"
+        style="@style/InputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:endIconMode="password_toggle"
         app:endIconTint="@color/colorPrimaryGreen"
-        app:boxBackgroundMode="filled"
         app:boxBackgroundColor="@color/white">
         <com.google.android.material.textfield.TextInputEditText
             style="@style/MyTextInputEditText"

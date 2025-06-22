@@ -11,4 +11,5 @@
     <color name="textColorHint">#757575</color>
     <color name="colorPrimaryDarkGreen">#3A853C</color>
     <color name="textPrimary">#263238</color>
+    <color name="red">#F44336</color>
 </resources>

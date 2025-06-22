@@ -31,6 +31,9 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_Collection -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(binding.fragmentContainer.id, CollectionFragment())
+                        .commit()
                     true
                 }
                 R.id.nav_profile -> {

@@ -11,6 +11,7 @@ import com.insfinal.bookdforall.model.Book
 class BookAdapter(
     private val books: List<Book>,
     private val onItemClick: (Book) -> Unit // Lambda untuk menangani klik item
+
 ) : RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
 
     inner class BookViewHolder(private val binding: ItemBookHorizontalBinding) : RecyclerView.ViewHolder(binding.root) {

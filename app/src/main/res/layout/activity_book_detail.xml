@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".ui.BookDetailActivity">
+    tools:context="com.insfinal.bookdforall.ui.BookDetailActivity">
 
     <ScrollView
         android:id="@+id/scrollViewContent"
@@ -147,7 +147,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvBookDescription">
 
-            <TextView style="@style/BookInfoLabel" android:text="Bahasa" />
+            <TextView style="@style/BookInfoLabel" android:text="@string/bahasa" />
             <TextView android:id="@+id/tvInfoLanguage" style="@style/BookInfoValue" android:text="Indonesia" />
 
             <TextView style="@style/BookInfoLabel" android:text="Tanggal Rilis" />
@@ -264,6 +264,7 @@
 
         <Button
             android:id="@+id/btnWriteReview"
+            android:background="@drawable/rounded_button_group_background"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
@@ -307,6 +308,7 @@
 
             <Button
                 android:id="@+id/btnBacaPratinjau"
+                android:background="@drawable/rounded_button_group_background"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -317,6 +319,7 @@
 
             <Button
                 android:id="@+id/btnDownload"
+                android:background="@drawable/rounded_button_group_background"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -328,6 +331,7 @@
 
         <Button
             android:id="@+id/btnBacaSingle"
+            android:background="@drawable/rounded_button_group_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Baca"

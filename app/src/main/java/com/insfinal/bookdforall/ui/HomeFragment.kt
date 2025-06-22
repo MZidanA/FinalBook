@@ -38,7 +38,7 @@ class HomeFragment : Fragment() {
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             binding.rvLanjutkanBaca.adapter = BookAdapter(books) { clickedBook ->
                 val intent = Intent(requireContext(), BookDetailActivity::class.java)
-                intent.putExtra(BookDetailActivity.EXTRA_BOOK, clickedBook)
+                intent.putExtra(BookDetailActivity.EXTRA_BOOK_ID, clickedBook.bookId)
                 startActivity(intent)
             }
         }
@@ -48,7 +48,7 @@ class HomeFragment : Fragment() {
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             binding.rvTrending.adapter = BookAdapter(books) { clickedBook ->
                 val intent = Intent(requireContext(), BookDetailActivity::class.java)
-                intent.putExtra(BookDetailActivity.EXTRA_BOOK, clickedBook)
+                intent.putExtra(BookDetailActivity.EXTRA_BOOK_ID, clickedBook.bookId)
                 startActivity(intent)
             }
         }

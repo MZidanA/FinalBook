@@ -14,7 +14,7 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Profile"
+        android:text="@string/profile"
         android:textColor="@android:color/black"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -39,7 +39,7 @@
             android:id="@+id/iv_avatar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:contentDescription="User avatar"
+            android:contentDescription="@string/user_avatar"
             android:scaleType="centerInside"
             android:src="@drawable/profile" />
     </FrameLayout>
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="Nama Pengguna"
+        android:text="@string/nama"
         android:textColor="@android:color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -66,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="email@example.com"
+        android:text="@string/email_example"
         android:textColor="@android:color/darker_gray"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,6 +90,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
             android:orientation="vertical">
 
             <!-- Edit Profile -->
@@ -98,7 +99,7 @@
                 style="@style/ProfileButtonStyle"
                 android:drawableStart="@drawable/edit"
                 android:drawablePadding="16dp"
-                android:text="Ubah Profil"
+                android:text="@string/ubah_profil"
                 android:textColor="@color/black" />
 
             <!-- Divider -->
@@ -115,7 +116,7 @@
                 style="@style/ProfileButtonStyle"
                 android:drawableStart="@drawable/lock"
                 android:drawablePadding="16dp"
-                android:text="Ubah Kata Sandi"
+                android:text="@string/ubah_kata_sandi"
                 android:textColor="@color/black" />
 
             <!-- Divider -->
@@ -132,7 +133,7 @@
                 style="@style/ProfileButtonStyle"
                 android:drawableStart="@drawable/logout"
                 android:drawablePadding="16dp"
-                android:text="Keluar"
+                android:text="@string/logout"
                 android:textColor="@color/black" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

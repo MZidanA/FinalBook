@@ -37,6 +37,12 @@ interface ApiService {
     @PUT("users/change-password")
     suspend fun changePassword(@Body req: ChangePasswordRequest): Response<Unit>
 
+    @POST("auth/forgot-password")
+    suspend fun forgotPassword(@Body req: ForgotPasswordRequest): Response<Unit>
+
+    @POST("auth/reset-password")
+    suspend fun setNewPassword(@Body req: SetNewPasswordRequest): Response<Unit>
+
     // Admins
     @GET("admins") suspend fun getAdmins(): Response<List<Admin>>
     @GET("admins/{id}") suspend fun getAdmin(@Path("id") id: Int): Response<Admin>
@@ -48,7 +54,7 @@ interface ApiService {
     suspend fun getBooks(): Response<List<Book>>
 
     @GET("books/{id}")
-    suspend fun getBook(@Path("id") id: Int): Response<Book>
+    suspend fun getBookById(@Path("id") id: Int): Response<Book>
 
     @POST("books")
     suspend fun createBook(@Body req: CreateBookRequest): Response<Unit>

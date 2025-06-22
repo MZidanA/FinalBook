@@ -9,11 +9,16 @@ class BookRepository {
     private val api = RetrofitInstance.api
 
     suspend fun getAll(): Response<List<Book>> = api.getBooks()
-    suspend fun getOne(id: Int): Response<Book> = api.getBook(id)
-    suspend fun create(req: CreateBookRequest): Response<Unit> = api.createBook(req)
-    suspend fun update(id: Int, req: CreateBookRequest): Response<Unit> = api.updateBook(id, req)
-    suspend fun delete(id: Int): Response<Unit> = api.deleteBook(id)
-    suspend fun getContinueReadingBooks() = api.getContinueReading()
-    suspend fun getTrendingBooks() = api.getTrendingBooks()
 
+    suspend fun getBookById(id: Int): Response<Book> = api.getBookById(id)
+
+    suspend fun create(req: CreateBookRequest): Response<Unit> = api.createBook(req)
+
+    suspend fun update(id: Int, req: CreateBookRequest): Response<Unit> = api.updateBook(id, req)
+
+    suspend fun delete(id: Int): Response<Unit> = api.deleteBook(id)
+
+    suspend fun getContinueReadingBooks(): Response<List<Book>> = api.getContinueReading()
+
+    suspend fun getTrendingBooks(): Response<List<Book>> = api.getTrendingBooks()
 }

@@ -14,7 +14,7 @@
         android:layout_height="48dp"
         android:layout_marginBottom="24dp"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="Kembali"
+        android:contentDescription="@string/kembali"
         android:padding="12dp"
         android:src="@drawable/ic_arrow_back"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Edit Profile"
+        android:text="@string/edit_profil"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -44,13 +44,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_judul"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        style="@style/MyTextInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_nama"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nama"
+            android:hint="@string/nama"
+            style="@style/MyTextInputEditText"
             android:inputType="textPersonName"
             android:maxLines="1"
             android:textColor="@color/black"
@@ -63,16 +64,17 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        style="@style/MyTextInputLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input_layout_nama"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        app:layout_constraintTop_toBottomOf="@id/input_layout_nama">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:hint="@string/email"
+            style="@style/MyTextInputEditText"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:textColor="@color/black"
@@ -86,7 +88,7 @@
         android:layout_height="56dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/rounded_button_group_background"
-        android:text="Simpan"
+        android:text="@string/simpan"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="16sp"

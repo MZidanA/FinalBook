@@ -1,12 +1,13 @@
-// LoginActivity.kt
 package com.insfinal.bookdforall.ui
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.booksforall.R
 import com.example.booksforall.databinding.ActivityLoginBinding
 import com.insfinal.bookdforall.ui.MainActivity // Pastikan Anda memiliki MainActivity
+import com.insfinal.bookdforall.utils.tintStartIcon
 
 class LoginActivity : AppCompatActivity() {
 
@@ -19,7 +20,10 @@ class LoginActivity : AppCompatActivity() {
 
         binding.buttonLogin.setOnClickListener {
             val email = binding.editTextEmailLogin.text.toString().trim()
+            tintStartIcon(binding.textInputLayoutEmail, R.color.icon_color, this)
             val password = binding.editTextPasswordLogin.text.toString().trim()
+            tintStartIcon(binding.textInputPasswordLogin, R.color.icon_color, this)
+
 
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Email dan password tidak boleh kosong", Toast.LENGTH_SHORT).show()
@@ -48,9 +52,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.textViewForgotPassword.setOnClickListener {
-            Toast.makeText(this, "Lupa Password diklik", Toast.LENGTH_SHORT).show()
-            // Uncomment baris ini jika Anda memiliki ForgotPasswordActivity:
-            // startActivity(Intent(this, ForgotPasswordActivity::class.java))
+            startActivity(Intent(this, ForgotPasswordActivity::class.java))
         }
 
         binding.textViewRegister.setOnClickListener {

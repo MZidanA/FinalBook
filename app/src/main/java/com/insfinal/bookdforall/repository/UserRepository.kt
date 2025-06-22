@@ -17,4 +17,7 @@ class UserRepository {
         return api.changePassword(ChangePasswordRequest(oldPass, newPass))
     }
     suspend fun login(req: LoginRequest): Response<LoginResponse> = api.login(req)
+    suspend fun forgotPassword(email: String): Response<Unit> {
+        return RetrofitInstance.api.forgotPassword(ForgotPasswordRequest(email))
+    }
 }

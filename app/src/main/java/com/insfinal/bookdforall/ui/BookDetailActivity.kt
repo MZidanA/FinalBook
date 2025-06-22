@@ -1,5 +1,6 @@
 package com.insfinal.bookdforall.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -8,9 +9,14 @@ import android.transition.TransitionManager
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
-import com.example.booksforall.databinding.ActivityBookDetailBinding // Pastikan import ini benar
-import com.insfinal.bookdforall.model.Book // Import Book data class
+import com.example.booksforall.databinding.ActivityBookDetailBinding
+import com.insfinal.bookdforall.model.Book
+import com.insfinal.bookdforall.repository.BookRepository
+import kotlinx.coroutines.launch
+import java.io.File
 
 class BookDetailActivity : AppCompatActivity() {
 
@@ -18,29 +24,18 @@ class BookDetailActivity : AppCompatActivity() {
     private var isBookDownloaded: Boolean = false // Tambahkan status ini
     private val handler = Handler(Looper.getMainLooper())
     private var downloadProgress: Int = 0
+    private var book: Book? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBookDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val book = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
-            intent.getParcelableExtra(EXTRA_BOOK, Book::class.java)
+        val bookId = intent.getIntExtra(EXTRA_BOOK_ID, -1)
+        if (bookId != -1) {
+            fetchBookById(bookId)
         } else {
-            @Suppress("DEPRECATION")
-            intent.getParcelableExtra(EXTRA_BOOK)
-        }
-
-        if (book != null) {
-            displayBookDetails(book)
-            // Di sini Anda akan memeriksa status download buku yang sebenarnya
-            // Misalnya, dari SharedPreferences, Room DB, atau server
-            // Untuk demo, kita asumsikan awalnya belum didownload.
-            // isBookDownloaded = checkBookDownloadStatus(book.bookId)
-            updateButtonState(book) // Perbarui state tombol saat onCreate
-        } else {
-            Toast.makeText(this, "Gagal memuat detail buku.", Toast.LENGTH_SHORT).show()
-            finish()
+            showError("ID buku tidak valid.")
         }
 
         binding.btnBack.setOnClickListener {
@@ -48,15 +43,7 @@ class BookDetailActivity : AppCompatActivity() {
         }
 
         binding.btnDownload.setOnClickListener {
-            val currentBook = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
-                intent.getParcelableExtra(EXTRA_BOOK, Book::class.java)
-            } else {
-                @Suppress("DEPRECATION")
-                intent.getParcelableExtra(EXTRA_BOOK)
-            }
-            if (currentBook != null) {
-                simulateDownload(currentBook)
-            }
+            book?.let { simulateDownload(it) }
         }
 
         binding.btnBacaPratinjau.setOnClickListener {
@@ -65,13 +52,49 @@ class BookDetailActivity : AppCompatActivity() {
         }
 
         binding.btnBacaSingle.setOnClickListener {
-            Toast.makeText(this, "Membuka buku: ${book?.judul}", Toast.LENGTH_SHORT).show()
-            // Implementasi logika membuka buku setelah diunduh (misal: buka reader app)
+            book?.let {
+                val file = File(getExternalFilesDir(null), "book_${it.bookId}.pdf")
+                if (file.exists()) {
+                    val uri = FileProvider.getUriForFile(
+                        this,
+                        "${packageName}.provider",
+                        file
+                    )
+
+                    val intent = Intent(Intent.ACTION_VIEW)
+                    intent.setDataAndType(uri, "application/pdf")
+                    intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this, "File buku tidak ditemukan.", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
         binding.btnWriteReview.setOnClickListener {
             Toast.makeText(this, "Menulis ulasan untuk: ${book?.judul}", Toast.LENGTH_SHORT).show()
-            // Implementasi logika menulis ulasan
+        }
+    }
+
+    private fun fetchBookById(bookId: Int) {
+        lifecycleScope.launch {
+            try {
+                val response = BookRepository().getBookById(bookId)
+                if (response.isSuccessful) {
+                    val result = response.body()
+                    if (result != null) {
+                        book = result
+                        displayBookDetails(result)
+                        updateButtonState(result)
+                    } else {
+                        showError("Buku tidak ditemukan.")
+                    }
+                } else {
+                    showError("Gagal memuat buku. Kode: ${response.code()}")
+                }
+            } catch (e: Exception) {
+                showError("Terjadi kesalahan: ${e.message}")
+            }
         }
     }
 
@@ -86,21 +109,19 @@ class BookDetailActivity : AppCompatActivity() {
         binding.tvBookAuthorDetail.text = book.penulis
         binding.tvBookDescription.text = book.deskripsi
 
-        binding.ratingBar.rating = 4.8f // Contoh rating
-        binding.tvRatingCount.text = "(230)" // Contoh count ulasan
+        binding.ratingBar.rating = book.rating ?: 0f
+        binding.tvRatingCount.text = "(${book.ratingCount ?: 0})"
 
         binding.tvInfoLanguage.text = "Indonesia"
-        binding.tvInfoReleaseDate.text = "8 September 1999"
+        binding.tvInfoReleaseDate.text = book.releaseDate ?: "-"
         binding.tvInfoPublisher.text = book.publisherId?.toString() ?: "N/A"
         binding.tvInfoAuthor.text = book.penulis
-        binding.tvInfoPages.text = "544 Halaman"
-        binding.tvInfoFormat.text = book.format
+        binding.tvInfoPages.text = "${book.totalPages ?: "?"} Halaman"
         binding.tvInfoCategory.text = book.kategori
+        binding.tvInfoFormat.text = book.format.takeIf { !it.isNullOrBlank() } ?: "-"
     }
 
-    // Fungsi untuk mensimulasikan proses download dan mengubah tombol
     private fun simulateDownload(book: Book) {
-        // Nonaktifkan tombol dan tampilkan progress bar
         TransitionManager.beginDelayedTransition(binding.bottomButtonContainer, Fade())
         binding.layoutTwoButtons.visibility = View.GONE
         binding.btnBacaSingle.visibility = View.GONE
@@ -113,7 +134,7 @@ class BookDetailActivity : AppCompatActivity() {
                 if (downloadProgress < 100) {
                     downloadProgress += 10
                     binding.progressBarDownload.progress = downloadProgress
-                    handler.postDelayed(this, 200) // Update progress every 200ms
+                    handler.postDelayed(this, 200)
                 } else {
                     // Download selesai
                     isBookDownloaded = true
@@ -125,46 +146,33 @@ class BookDetailActivity : AppCompatActivity() {
         handler.post(runnable)
     }
 
-    // Fungsi untuk memperbarui visibilitas tombol berdasarkan status download
     private fun updateButtonState(book: Book?) {
-        val root = binding.detailRootLayout // Menggunakan id yang ditambahkan di XML
+        val root = binding.detailRootLayout
         TransitionManager.beginDelayedTransition(root, Fade())
 
         if (isBookDownloaded) {
-            // Sembunyikan dua tombol awal dan progress bar
             binding.layoutTwoButtons.visibility = View.GONE
             binding.progressBarDownload.visibility = View.GONE
-            // Tampilkan tombol "Baca" tunggal
             binding.btnBacaSingle.visibility = View.VISIBLE
+            binding.btnBacaSingle.isEnabled = isBookDownloaded
+
         } else {
-            // Sembunyikan tombol "Baca" tunggal dan progress bar
             binding.btnBacaSingle.visibility = View.GONE
             binding.progressBarDownload.visibility = View.GONE
-            // Tampilkan dua tombol awal
             binding.layoutTwoButtons.visibility = View.VISIBLE
-            // Pastikan tombol diaktifkan jika belum didownload
             binding.btnDownload.isEnabled = true
-            binding.btnBacaPratinjau.isEnabled = true
+            binding.btnBacaPratinjau.isEnabled = !isBookDownloaded
         }
     }
 
-    // Panggil updateButtonState saat Activity dibuat
+    private fun showError(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        finish()
+    }
+
     override fun onStart() {
         super.onStart()
-        // Anda mungkin perlu memeriksa status download buku yang sebenarnya di sini
-        // Misalnya, dari SharedPreferences atau Room DB, jika Anda menyimpannya.
-        // isBookDownloaded = checkBookDownloadStatus(book.bookId) // Contoh
-        // Untuk demo, kita bisa menginisialisasi ulang setiap kali onStart.
-        // Namun dalam aplikasi nyata, status ini harus persisten.
-        val book = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
-            intent.getParcelableExtra(EXTRA_BOOK, Book::class.java)
-        } else {
-            @Suppress("DEPRECATION")
-            intent.getParcelableExtra(EXTRA_BOOK)
-        }
-        if (book != null) {
-            updateButtonState(book)
-        }
+        updateButtonState(book)
     }
 
     override fun onDestroy() {
@@ -173,13 +181,16 @@ class BookDetailActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val EXTRA_BOOK = "extra_book"
+        const val EXTRA_BOOK_ID = "extra_book_id"
     }
 
-    // Contoh fungsi untuk memeriksa status download (perlu diimplementasikan secara nyata)
-    // private fun checkBookDownloadStatus(bookId: Int): Boolean {
-    //     // Implementasi logika untuk memeriksa apakah buku sudah diunduh
-    //     // Misalnya: Cek di SharedPreferences atau database lokal
-    //     return false // Mengembalikan false untuk tujuan demo
-    // }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean("is_downloaded", isBookDownloaded)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        isBookDownloaded = savedInstanceState.getBoolean("is_downloaded", false)
+    }
 }

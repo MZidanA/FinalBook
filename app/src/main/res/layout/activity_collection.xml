@@ -13,7 +13,7 @@
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Koleksi"
+            android:text="@string/koleksi"
             android:textColor="@android:color/black"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -55,7 +55,8 @@
             app:menu="@menu/bottom_navigation_menu"
             android:background="?android:attr/windowBackground"
             app:itemIconTint="@color/bottom_nav_color_selector"
-            app:itemTextColor="@color/bottom_nav_color_selector" />
+            app:itemTextColor="@color/bottom_nav_color_selector"
+            tools:ignore="VisualLintBottomNav" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

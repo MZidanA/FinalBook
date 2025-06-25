@@ -70,4 +70,6 @@
     <string name="pilih_file">Pilih File</string>
     <string name="tambahkan_cover">Tambahkan Sampul Buku</string>
     <string name="tambah">Tambah</string>
+    <string name="admin_dashboard">Admin Dashboard</string>
+    <string name="dashboard">Dashboard</string>
 </resources>

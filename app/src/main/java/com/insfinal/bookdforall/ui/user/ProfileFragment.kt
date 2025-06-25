@@ -1,9 +1,13 @@
-package com.insfinal.bookdforall.ui
+package com.insfinal.bookdforall.ui.user
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -28,15 +32,15 @@ class ProfileFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: android.view.LayoutInflater,
-        container: android.view.ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): android.view.View {
+    ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    override fun onViewCreated(view: android.view.View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         if (selectedImageUri == null) {
@@ -78,7 +82,7 @@ class ProfileFragment : Fragment() {
                 .setTitle("Keluar")
                 .setMessage("Apakah kamu yakin ingin logout?")
                 .setPositiveButton("Ya") { _, _ ->
-                    val sharedPref = requireContext().getSharedPreferences("auth", android.content.Context.MODE_PRIVATE)
+                    val sharedPref = requireContext().getSharedPreferences("auth", Context.MODE_PRIVATE)
                     sharedPref.edit().clear().apply()
 
                     val intent = Intent(requireContext(), LoginActivity::class.java)

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryGreen"
-    tools:context="com.insfinal.bookdforall.ui.SplashActivity">
+    tools:context="com.insfinal.bookdforall.ui.user.SplashActivity">
 
     <ImageView
         android:id="@+id/iv_logo"

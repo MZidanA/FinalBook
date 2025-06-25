@@ -1,4 +1,4 @@
-package com.insfinal.bookdforall.ui
+package com.insfinal.bookdforall.ui.user
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.example.booksforall.R
 import com.example.booksforall.databinding.ActivityBookDetailBinding
 import com.insfinal.bookdforall.model.Book
 import com.insfinal.bookdforall.repository.BookRepository
@@ -100,8 +101,8 @@ class BookDetailActivity : AppCompatActivity() {
     private fun displayBookDetails(book: Book) {
         Glide.with(this)
             .load(book.coverImageUrl)
-            .placeholder(com.example.booksforall.R.drawable.placeholder_book_cover)
-            .error(com.example.booksforall.R.drawable.placeholder_book_cover)
+            .placeholder(R.drawable.placeholder_book_cover)
+            .error(R.drawable.placeholder_book_cover)
             .into(binding.ivBookCoverDetail)
 
         binding.tvBookTitleDetail.text = book.judul

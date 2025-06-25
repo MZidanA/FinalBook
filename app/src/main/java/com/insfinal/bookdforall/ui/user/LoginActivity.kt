@@ -1,4 +1,4 @@
-package com.insfinal.bookdforall.ui
+package com.insfinal.bookdforall.ui.user
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.booksforall.R
 import com.example.booksforall.databinding.ActivityLoginBinding
-import com.insfinal.bookdforall.ui.MainActivity // Pastikan Anda memiliki MainActivity
+import com.insfinal.bookdforall.ui.admin.AdminMainActivity
 import com.insfinal.bookdforall.utils.tintStartIcon
 
 class LoginActivity : AppCompatActivity() {
@@ -25,16 +25,22 @@ class LoginActivity : AppCompatActivity() {
             tintStartIcon(binding.textInputPasswordLogin, R.color.icon_color, this)
 
 
-            if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Email dan password tidak boleh kosong", Toast.LENGTH_SHORT).show()
-            } else {
-                if (email == "test@example.com" && password == "password123") {
-                    Toast.makeText(this, "Login berhasil!", Toast.LENGTH_SHORT).show()
+            when {
+                email == "admin@example.com" && password == "admin123" -> {
+                    Toast.makeText(this, "Login sebagai admin!", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, AdminMainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
 
+                email == "test@example.com" && password == "password123" -> {
+                    Toast.makeText(this, "Login sebagai pengguna biasa!", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
-                } else {
+                }
+
+                else -> {
                     Toast.makeText(this, "Email atau password salah.", Toast.LENGTH_SHORT).show()
                 }
             }

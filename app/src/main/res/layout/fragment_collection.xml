@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F7F9FC"
-    tools:context="com.insfinal.bookdforall.ui.CollectionFragment">
+    tools:context="com.insfinal.bookdforall.ui.user.CollectionFragment">
 
     <!-- Header Title -->
     <TextView
@@ -36,7 +36,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/headerTitle"
-        app:startIconDrawable="@drawable/ic_search"
+        app:startIconDrawable="@drawable/search"
         app:startIconTint="@color/colorGreyText">
 
         <com.google.android.material.textfield.TextInputEditText

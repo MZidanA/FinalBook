@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <!-- App Bar -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        app:navigationIcon="@drawable/back"
+        app:navigationIconTint="#4A5568"
+        app:title="@string/edit_buku"
+        app:titleTextColor="#2D3748"
+        app:titleTextAppearance="@style/ToolbarTitle" />
+
+    <!-- Main Content -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="0dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:padding="24dp"
+            android:paddingBottom="32dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Cover Section -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/cover_buku"
+                    android:textColor="#4A5568"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="8dp"/>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="24dp">
+
+                    <ImageView
+                        android:id="@+id/editBookCover"
+                        android:layout_width="160dp"
+                        android:layout_height="220dp"
+                        android:scaleType="centerCrop"
+                        android:background="#E2E8F0"
+                        android:layout_gravity="center_horizontal"
+                        android:contentDescription="@string/cover_buku"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackground"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/placeholder_cover"
+                            app:tint="#718096" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/tambahkan_cover"
+                            android:textColor="#718096" />
+                    </LinearLayout>
+                </FrameLayout>
+
+                <!-- Input Fields -->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/EditBookInputStyle"
+                    android:layout_marginBottom="16dp"
+                    app:startIconDrawable="@drawable/title">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editBookTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/judul_buku" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/EditBookInputStyle"
+                    android:layout_marginBottom="16dp"
+                    app:startIconDrawable="@drawable/author">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editBookAuthor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/penulis_buku"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/EditBookInputStyle"
+                    android:layout_marginBottom="16dp"
+                    android:layout_height="wrap_content"
+                    app:startIconDrawable="@drawable/description"
+                    app:endIconScaleType="fitStart">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editBookDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:gravity="top"
+                        android:hint="@string/dekripsi_buku"
+                        android:inputType="textMultiLine"
+                        android:overScrollMode="ifContentScrolls"
+                        android:scrollbars="vertical"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- File Selection -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/file_buku_pdf"
+                    android:textColor="#4A5568"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="8dp"/>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    app:cardCornerRadius="8dp"
+                    app:strokeColor="#CBD5E0"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/file"
+                            app:tint="@color/colorGreyText" />
+
+                        <TextView
+                            android:id="@+id/fileNameText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="16dp"
+                            android:text="@string/belum_ada_file_dipilih"
+                            android:textColor="#718096" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/selectBookFileButton"
+                            style="@style/OutlineButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pilih_file" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Submit Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/tombolSimpanEditBuku"
+                    style="@style/PrimaryButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/simpan" />
+            </LinearLayout>
+        </ScrollView>
+    </com.google.android.material.card.MaterialCardView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

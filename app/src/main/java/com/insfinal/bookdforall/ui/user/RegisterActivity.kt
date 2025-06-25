@@ -1,5 +1,5 @@
 // RegisterActivity.kt
-package com.insfinal.bookdforall.ui
+package com.insfinal.bookdforall.ui.user
 
 import android.content.Intent
 import android.os.Bundle

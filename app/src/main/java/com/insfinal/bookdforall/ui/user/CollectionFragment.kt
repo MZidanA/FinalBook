@@ -1,4 +1,4 @@
-    package com.insfinal.bookdforall.ui
+package com.insfinal.bookdforall.ui.user
 
     import android.os.Bundle
     import androidx.fragment.app.Fragment

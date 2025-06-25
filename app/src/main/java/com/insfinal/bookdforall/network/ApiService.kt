@@ -6,6 +6,8 @@ import retrofit2.http.*
 import com.insfinal.bookdforall.model.Book
 import com.insfinal.bookdforall.model.CreateBookRequest
 import com.insfinal.bookdforall.model.ChangePasswordRequest
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 
 interface ApiService {
     @POST("auth/login")
@@ -66,5 +68,15 @@ interface ApiService {
 
     @GET("books/trending")
     suspend fun getTrendingBooks(): Response<List<Book>>
+
+    @Multipart
+    @POST("books/upload")
+    suspend fun uploadBook(
+        @Part("title") title: RequestBody,
+        @Part("author") author: RequestBody,
+        @Part("description") description: RequestBody,
+        @Part cover: MultipartBody.Part?,
+        @Part pdf: MultipartBody.Part?
+    ): Response<Unit>
 }
 

@@ -7,11 +7,9 @@ import retrofit2.Response
 class UserRepository {
     private val api = RetrofitInstance.api
 
-    suspend fun getAll() = api.getUsers()
     suspend fun getOne(id: Int) = api.getUser(id)
     suspend fun create(req: CreateUserRequest) = api.createUser(req)
     suspend fun updateUser(id: Int, req: CreateUserRequest) = api.updateUser(id, req)
-    suspend fun delete(id: Int) = api.deleteUser(id)
     suspend fun getCurrentUser(): Response<User> = api.getCurrentUser()
     suspend fun changePassword(oldPass: String, newPass: String): Response<Unit> {
         return api.changePassword(ChangePasswordRequest(oldPass, newPass))
@@ -20,4 +18,11 @@ class UserRepository {
     suspend fun forgotPassword(email: String): Response<Unit> {
         return RetrofitInstance.api.forgotPassword(ForgotPasswordRequest(email))
     }
+    suspend fun getAllUsers(): Response<List<User>> {
+        return api.getUsers()
+    }
+    suspend fun deleteUser(userId: Int): Response<Unit> {
+        return api.deleteUser(userId)
+    }
+
 }

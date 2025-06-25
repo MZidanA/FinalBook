@@ -11,7 +11,7 @@ import java.net.CookieManager
 import java.net.CookiePolicy
 
 object RetrofitInstance {
-    const val BASE_URL = "http://10.0.2.2:3000/api/"
+    const val BASE_URL = "http://192.168.1.64:3000/api/"
     private val cookieManager = CookieManager().apply {
         setCookiePolicy(CookiePolicy.ACCEPT_ALL)
     }
@@ -21,7 +21,6 @@ object RetrofitInstance {
         .addInterceptor { chain ->
             val token = SessionManager.getToken()
             val requestBuilder = chain.request().newBuilder()
-
             if (!token.isNullOrEmpty()) {
                 requestBuilder.addHeader("Authorization", "Bearer $token")
             }

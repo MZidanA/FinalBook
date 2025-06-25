@@ -2,6 +2,8 @@ package com.insfinal.bookdforall.network
 
 import com.insfinal.bookdforall.model.*
 import retrofit2.Response
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.http.*
 import com.insfinal.bookdforall.model.Book
 import com.insfinal.bookdforall.model.CreateBookRequest
@@ -66,5 +68,15 @@ interface ApiService {
 
     @GET("books/trending")
     suspend fun getTrendingBooks(): Response<List<Book>>
+
+    @Multipart
+    @POST("books/upload")
+    suspend fun uploadBook(
+        @Part("title") title: RequestBody,
+        @Part("author") author: RequestBody,
+        @Part("description") description: RequestBody,
+        @Part cover: MultipartBody.Part?,
+        @Part pdf: MultipartBody.Part?
+    ): Response<Unit>
 }
 

@@ -1,37 +1,64 @@
 package com.insfinal.bookdforall.adapters
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.booksforall.databinding.CollectionItemBookBinding
+import com.bumptech.glide.Glide
+import com.insfinal.bookdforall.R // Pastikan ini benar untuk drawable
+import com.insfinal.bookdforall.databinding.ItemBookHorizontalBinding // Asumsi menggunakan layout ini
 import com.insfinal.bookdforall.model.DownloadedBook
-import android.view.LayoutInflater
+import com.insfinal.bookdforall.utils.BookAssetPaths // Import BookAssetPaths
 
 class DownloadedBooksAdapter(
     private var books: List<DownloadedBook>,
-    private val onClick: (DownloadedBook) -> Unit
-) : RecyclerView.Adapter<DownloadedBooksAdapter.BookViewHolder>() {
+    private val onItemClick: (DownloadedBook) -> Unit
+) : RecyclerView.Adapter<DownloadedBooksAdapter.DownloadedBookViewHolder>() {
 
-    inner class BookViewHolder(val binding: CollectionItemBookBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class DownloadedBookViewHolder(private val binding: ItemBookHorizontalBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(book: DownloadedBook) {
-            binding.bookTitle.text = book.fileName
-            binding.root.setOnClickListener { onClick(book) }
+            // Di sini Anda perlu memuat cover jika Anda menyimpannya atau dapat membuatnya berdasarkan buku
+            // Karena DownloadedBook hanya menyimpan nama file, kita perlu mencarinya di BookAssetPaths
+            val coverFileName = BookAssetPaths.getCoverImageFileName(book.bookId)
+            if (coverFileName != null) {
+                val assetPath = BookAssetPaths.ASSETS_ROOT + BookAssetPaths.ASSETS_IMG_PATH + coverFileName
+                Glide.with(binding.ivBookCover.context)
+                    .load(assetPath)
+                    .placeholder(R.drawable.placeholder_book_cover)
+                    .error(R.drawable.error_book_cover)
+                    .into(binding.ivBookCover)
+            } else {
+                // Fallback jika cover tidak ditemukan di assets
+                Glide.with(binding.ivBookCover.context)
+                    .load(R.drawable.placeholder_book_cover)
+                    .into(binding.ivBookCover)
+            }
+
+            binding.tvBookTitle.text = book.title
+            binding.tvBookAuthor.text = book.author
+            // Tambahkan elemen UI untuk menampilkan halaman terakhir dibaca jika ada
+            // Contoh: binding.tvProgress.text = "Halaman ${book.lastReadPage + 1}"
+
+            itemView.setOnClickListener {
+                onItemClick(book)
+            }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val binding = CollectionItemBookBinding.inflate(inflater, parent, false)
-        return BookViewHolder(binding)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DownloadedBookViewHolder {
+        val binding =
+            ItemBookHorizontalBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return DownloadedBookViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DownloadedBookViewHolder, position: Int) {
         holder.bind(books[position])
     }
 
+    override fun getItemCount(): Int = books.size
+
     fun updateData(newBooks: List<DownloadedBook>) {
-        this.books = newBooks
+        books = newBooks
         notifyDataSetChanged()
     }
-
-    override fun getItemCount() = books.size
 }

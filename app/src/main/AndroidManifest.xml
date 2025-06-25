@@ -13,6 +13,42 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BooksForAll"
         tools:targetApi="31">
+
+        <activity
+            android:name="com.insfinal.bookdforall.ui.SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.insfinal.bookdforall.ui.LoginActivity"
+            android:exported="false" /> <activity
+        android:name="com.insfinal.bookdforall.ui.AdminActivity"
+        android:exported="false" />
+
+        <activity
+            android:name="com.insfinal.bookdforall.ui.MainActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.insfinal.bookdforall.ui.BookDetailActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.insfinal.bookdforall.ui.PdfViewerActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+
+        <activity
+            android:name="com.insfinal.bookdforall.ui.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.insfinal.bookdforall.ui.ForgotPasswordActivity"
+            android:exported="false" />
         <activity
             android:name="com.insfinal.bookdforall.ui.SetNewPasswordActivity"
             android:exported="false" />
@@ -20,20 +56,23 @@
             android:name="com.insfinal.bookdforall.ui.ChangePasswordActivity"
             android:exported="false" />
         <activity
-            android:name="com.insfinal.bookdforall.ui.SplashActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:name="com.insfinal.bookdforall.ui.EditProfileActivity"
+            android:exported="false" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name="com.insfinal.bookdforall.ui.LoginActivity" />
-        <activity android:name="com.insfinal.bookdforall.ui.RegisterActivity" />
-        <activity android:name="com.insfinal.bookdforall.ui.ForgotPasswordActivity" />
-        <activity android:name="com.insfinal.bookdforall.ui.MainActivity" />
-        <activity android:name="com.insfinal.bookdforall.ui.BookDetailActivity" />
-        <activity android:name="com.insfinal.bookdforall.ui.EditProfileActivity" />
+        <activity
+            android:name="com.insfinal.bookdforall.ui.AddBookActivity"
+            android:exported="false" /> <activity
+        android:name="com.insfinal.bookdforall.ui.EditBookActivity"
+        android:exported="false" /> <provider
+        android:name="androidx.core.content.FileProvider"
+        android:authorities="${applicationId}.provider"
+        android:exported="false"
+        android:grantUriPermissions="true">
+        <meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/file_paths" />
+    </provider>
+
     </application>
 
 </manifest>

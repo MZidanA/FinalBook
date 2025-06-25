@@ -15,6 +15,10 @@ fragmentKtx = "1.6.0"
 glide = "4.16.0"
 retrofit = "2.9.0"
 okhttp = "4.9.3"
+# --- Tambahan di sini ---
+android-pdf-viewer = "3.2.0-beta.1" # Versi PDF Viewer
+gson = "2.10.1" # Versi Gson
+# --- Akhir Tambahan ---
 
 [libraries]
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
@@ -31,8 +35,11 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+# --- Tambahan di sini ---
+android-pdf-viewer = { group = "com.github.barteksc", name = "android-pdf-viewer", version.ref = "android-pdf-viewer" }
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+# --- Akhir Tambahan ---
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-

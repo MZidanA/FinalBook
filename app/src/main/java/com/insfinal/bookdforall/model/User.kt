@@ -6,6 +6,7 @@ data class User(
     val nama: String,
     val email: String,
     val password: String,
+    val isAdmin: Boolean,
     @Json(name = "tanggal_daftar") val tanggalDaftar: String,
     @Json(name = "status_langganan") val statusLangganan: String
 )

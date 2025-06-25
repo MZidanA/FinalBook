@@ -8,9 +8,12 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.example.booksforall.databinding.FragmentProfileBinding
+import com.insfinal.bookdforall.databinding.FragmentProfileBinding
 import com.insfinal.bookdforall.repository.UserRepository
+import com.insfinal.bookdforall.utils.SessionManager // <--- IMPORT INI
 import kotlinx.coroutines.launch
+import android.content.Context // Import Context jika belum ada
+
 
 class ProfileFragment : Fragment() {
 
@@ -39,6 +42,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: android.view.View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Pastikan Anda memuat gambar avatar dari penyimpanan internal atau Glide jika sudah login sebelumnya
         if (selectedImageUri == null) {
             binding.ivAvatar.setImageURI(
                 Uri.parse("android.resource://${requireActivity().packageName}/drawable/profile")
@@ -55,9 +59,12 @@ class ProfileFragment : Fragment() {
                     }
                 } else {
                     Log.e("ProfileFragment", "Gagal dapat user: ${response.code()}")
+                    // Jika gagal mendapatkan user, mungkin sesi sudah expired
+                    // Anda bisa pertimbangkan untuk logout paksa di sini
                 }
             } catch (e: Exception) {
                 Log.e("ProfileFragment", "Error fetch user", e)
+                // Jika ada error jaringan, mungkin juga sesi perlu dicek ulang atau logout
             }
         }
 
@@ -78,12 +85,15 @@ class ProfileFragment : Fragment() {
                 .setTitle("Keluar")
                 .setMessage("Apakah kamu yakin ingin logout?")
                 .setPositiveButton("Ya") { _, _ ->
-                    val sharedPref = requireContext().getSharedPreferences("auth", android.content.Context.MODE_PRIVATE)
-                    sharedPref.edit().clear().apply()
+                    // --- PERBAIKAN: Gunakan SessionManager.logoutUser() ---
+                    SessionManager.logoutUser() // Ini akan membersihkan SharedPreferences Anda
 
+                    // Arahkan ke LoginActivity dan bersihkan back stack
                     val intent = Intent(requireContext(), LoginActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
+                    // Tidak perlu finish() di Fragment, karena startActivity akan dijalankan oleh Activity induk
+                    // dan Activity induk akan di-finish oleh FLAG_ACTIVITY_CLEAR_TASK jika LoginActivity adalah SingleTop
                 }
                 .setNegativeButton("Batal", null)
                 .show()

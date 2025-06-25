@@ -2,7 +2,7 @@ package com.insfinal.bookdforall.model
 
 import android.os.Parcelable
 import com.squareup.moshi.Json
-import kotlinx.parcelize.Parcelize // Tambahkan import ini
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Book(
@@ -19,5 +19,7 @@ data class Book(
     val totalPages: Int?,
     @Json(name = "cover_image_url") val coverImageUrl: String,
     @Json(name = "publisher_id") val publisherId: Int?,
-    @Json(name = "content_provider_id") val contentProviderId: Int?
-) : Parcelable // Implementasikan Parcelable
+    @Json(name = "content_provider_id") val contentProviderId: Int?,
+    val pdfFileName: String? = null, // Harus ada
+    val coverImageFileName: String? = null // Harus ada
+) : Parcelable

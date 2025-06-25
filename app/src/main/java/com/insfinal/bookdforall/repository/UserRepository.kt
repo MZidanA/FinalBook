@@ -7,7 +7,7 @@ import retrofit2.Response
 class UserRepository {
     private val api = RetrofitInstance.api
 
-    suspend fun getAll() = api.getUsers()
+    suspend fun getAll(): Response<List<User>> = api.getUsers()
     suspend fun getOne(id: Int) = api.getUser(id)
     suspend fun create(req: CreateUserRequest) = api.createUser(req)
     suspend fun updateUser(id: Int, req: CreateUserRequest) = api.updateUser(id, req)
@@ -19,5 +19,11 @@ class UserRepository {
     suspend fun login(req: LoginRequest): Response<LoginResponse> = api.login(req)
     suspend fun forgotPassword(email: String): Response<Unit> {
         return RetrofitInstance.api.forgotPassword(ForgotPasswordRequest(email))
+    }
+    suspend fun getAllUsers(): Response<List<User>> { // Method yang dipanggil UserManageViewModel
+        return api.getUsers()
+    }
+    suspend fun deleteUser(userId: Int): Response<Unit> { // <--- PERBAIKAN DI SINI: Menerima userId
+        return api.deleteUser(userId) // Memanggil api.deleteUser dengan userId
     }
 }

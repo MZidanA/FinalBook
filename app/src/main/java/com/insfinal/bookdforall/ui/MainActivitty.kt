@@ -2,8 +2,8 @@ package com.insfinal.bookdforall.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.booksforall.R
-import com.example.booksforall.databinding.ActivityMainBinding
+import com.insfinal.bookdforall.R
+import com.insfinal.bookdforall.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 

@@ -8,7 +8,7 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.example.booksforall.R
+import com.insfinal.bookdforall.R
 import com.insfinal.bookdforall.model.CreateUserRequest
 import com.insfinal.bookdforall.model.User
 import com.insfinal.bookdforall.repository.UserRepository

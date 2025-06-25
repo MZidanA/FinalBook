@@ -1,3 +1,4 @@
+
 <resources>
     <string name="app_name">BooksforAll</string>
     <string name="action_settings">Settings</string>
@@ -50,4 +51,26 @@
     <string name="deskripsi_password_baru">Masukkan password baru Anda</string>
     <string name="Beranda">Beranda</string>
     <string name="app_logo">App Logo</string>
+    <string name="title_activity_main_admin">MainAdminActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="book_manage">Books</string>
+    <string name="user_manage">Users</string>
+    <string name="hapus_buku">"Hapus buku "</string>
+    <string name="tambah_buku">Tambah Buku\n</string>
+    <string name="tidak_ada_buku">Tidak ada buku</string>
+    <string name="semua_buku">Semua Buku</string>
+    <string name="hapus_pengguna">Hapus Pengguna\n</string>
+    <string name="belum_ada_pengguna">Belum ada pengguna</string>
+    <string name="manajemen_pengguna">Manajemen Pengguna</string>
+    <string name="cari_pengguna">Cari pengguna</string>
+    <string name="dekripsi_buku">Deskripsi buku</string>
+    <string name="file_buku_pdf">File Buku PDF</string>
+    <string name="belum_ada_file_dipilih">Belum ada file yang dipilih\n</string>
+    <string name="pilih_file">Pilih File</string>
+    <string name="tambahkan_cover">Tambahkan Sampul Buku</string>
+    <string name="tambah">Tambah</string>
+    <string name="admin_dashboard">Admin Dashboard</string>
+    <string name="dashboard">Dashboard</string>
 </resources>

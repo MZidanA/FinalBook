@@ -8,8 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
-import com.example.booksforall.R
-import com.example.booksforall.databinding.ActivitySetNewPasswordBinding
+import com.insfinal.bookdforall.R
+import com.insfinal.bookdforall.databinding.ActivitySetNewPasswordBinding
 import com.insfinal.bookdforall.repository.AuthRepository
 import kotlinx.coroutines.launch
 

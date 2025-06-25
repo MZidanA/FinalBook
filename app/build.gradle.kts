@@ -1,15 +1,15 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id ("kotlin-parcelize")
+    id("kotlin-parcelize")
 }
 
 android {
-    namespace = "com.example.booksforall"
+    namespace = "com.insfinal.bookdforall"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.booksforall"
+        applicationId = "com.insfinal.bookdforall"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -81,4 +81,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(libs.android.pdf.viewer) // Untuk PDF Viewer
+    implementation(libs.gson)
 }
+

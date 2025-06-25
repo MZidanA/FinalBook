@@ -5,7 +5,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.example.booksforall.databinding.ActivityChangePasswordBinding
+import com.insfinal.bookdforall.databinding.ActivityChangePasswordBinding
 import com.insfinal.bookdforall.model.ErrorResponse
 import com.insfinal.bookdforall.repository.UserRepository
 import com.squareup.moshi.Moshi

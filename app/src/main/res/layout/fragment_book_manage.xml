@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="16dp">
+
+            <!-- Judul -->
+            <TextView
+                android:id="@+id/headerTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Manajemen Buku"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:paddingBottom="8dp" />
+
+            <!-- Pencarian -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/searchContainer"
+                style="@style/SearchInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:startIconDrawable="@drawable/search"
+                app:startIconTint="@color/colorGreyText">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/searchView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/cari_buku_penulis_atau_genre"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/colorGreyText" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Info jika kosong -->
+            <TextView
+                android:id="@+id/emptyMyBooksView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tidak_ada_buku"
+                android:textAlignment="center"
+                android:textColor="#718096"
+                android:textSize="16sp"
+                android:visibility="gone"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp" />
+
+        <FrameLayout
+            android:id="@+id/loadingOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#80000000"
+            android:visibility="gone"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center">
+
+            <ProgressBar
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:indeterminate="true"
+                style="?android:attr/progressBarStyleLarge" />
+        </FrameLayout>
+
+
+    <!-- Daftar Buku -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/myBooksRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:clipToPadding="false"
+                android:contentDescription="@string/semua_buku"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:scrollbars="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        </LinearLayout>
+
+        <!-- Tombol Tambah Buku -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAddBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="24dp"
+            android:contentDescription="@string/tambah_buku"
+            android:src="@drawable/add"
+            app:backgroundTint="@color/colorPrimaryGreen"
+            app:elevation="8dp"
+            app:tint="@android:color/white" />
+
+    </FrameLayout>
+</layout>

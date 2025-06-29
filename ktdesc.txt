@@ -1,0 +1,407 @@
+BookDetailActivity.kt (Halaman Detail Buku)
+
+Fungsi: Menampilkan detail lengkap sebuah buku, termasuk sampul, judul, penulis, deskripsi, rating, dan informasi lainnya. Memungkinkan pengguna untuk mengunduh buku dan membukanya melalui PDF Viewer.
+
+Komponen UI (berdasarkan ActivityBookDetailBinding):
+btnBack (ImageButton): Tombol untuk kembali ke halaman sebelumnya.
+ivBookmark (ImageView): Ikon bookmark (kemungkinan untuk menandai buku).
+ivBookCoverDetail (ImageView): Menampilkan sampul buku.
+tvBookTitleDetail (TextView): Menampilkan judul buku.
+tvBookAuthorDetail (TextView): Menampilkan nama penulis buku.
+ratingBar (RatingBar): Menampilkan rating rata-rata buku.
+tvRatingCount (TextView): Menampilkan jumlah ulasan/rating.
+tvDescriptionTitle (TextView): Judul bagian "Deskripsi".
+tvBookDescription (TextView): Menampilkan deskripsi lengkap buku.
+tvInfoLanguage (TextView): Menampilkan bahasa buku.
+tvInfoReleaseDate (TextView): Menampilkan tanggal rilis buku.
+tvInfoPublisher (TextView): Menampilkan penerbit buku.
+tvInfoAuthor (TextView): Menampilkan nama penulis (duplikat, perlu dicek tujuan).
+tvInfoPages (TextView): Menampilkan jumlah halaman buku.
+tvInfoCategory (TextView): Menampilkan kategori buku.
+tvInfoFormat (TextView): Menampilkan format buku (misal: PDF, EPUB).
+tvReviewsTitle (TextView): Judul bagian "Nilai dan Ulasan".
+layoutReview1, layoutReview2 (LinearLayout): Menampilkan contoh ulasan buku.
+btnWriteReview (Button): Tombol untuk menulis ulasan.
+bottomButtonContainer (LinearLayout): Wadah untuk tombol aksi di bagian bawah layar.
+layoutTwoButtons (LinearLayout): Wadah untuk tombol "Baca Pratinjau" dan "Download".
+btnBacaPratinjau (Button): Tombol untuk membaca pratinjau buku.
+btnDownload (Button): Tombol untuk mengunduh buku.
+btnBacaSingle (Button): Tombol untuk membaca buku (muncul setelah diunduh).
+progressBarDownload (ProgressBar): Indikator kemajuan unduhan.
+
+Fungsi Utama:
+onCreate(): Inisialisasi binding, launcher aktivitas untuk PDF Viewer, mengambil ID buku dari intent, memuat detail buku, dan mengatur listener untuk tombol-tombol.
+fetchBookById(): Mengambil detail buku dari API berdasarkan ID buku.
+displayBookDetails(): Menampilkan data buku yang diterima ke elemen UI yang sesuai.
+isBookDownloaded(): Memeriksa apakah file PDF buku sudah diunduh ke penyimpanan internal perangkat.
+simulateAndCopyDownload(): Mensimulasikan proses unduhan dengan progress bar, lalu menyalin file PDF dari aset ke penyimpanan internal.
+copyAssetPdfToInternalStorage(): Menyalin file PDF dari folder assets aplikasi ke direktori books_downloaded di penyimpanan eksternal aplikasi.
+updateButtonState(): Memperbarui tampilan tombol (Download, Baca Pratinjau, Baca) berdasarkan status unduhan buku.
+openBookPdf(): Membuka file PDF buku menggunakan PdfViewerActivity.
+onStart(): Memastikan status unduhan diperbarui setiap kali aktivitas dimulai.
+onSaveInstanceState(), onRestoreInstanceState(): Menyimpan dan memulihkan status unduhan dan objek buku saat konfigurasi berubah.
+
+
+ForgotPasswordActivity.kt (Halaman Lupa Kata Sandi)
+
+Fungsi: Memungkinkan pengguna untuk memulai proses reset kata sandi dengan memasukkan alamat email mereka.
+
+Komponen UI (berdasarkan ActivityForgotPasswordBinding):
+btnKembali (ImageButton): Tombol untuk kembali ke layar login.
+editTextEmail (TextInputEditText): Kolom input untuk alamat email pengguna.
+btnSendResetLink (Button): Tombol untuk mengirim tautan reset kata sandi.
+
+Fungsi Utama:
+onCreate(): Menginisialisasi binding, mengatur OnClickListener untuk tombol kirim tautan reset. Terdapat validasi email lokal dan simulasi respons API untuk PREDEFINED_VALID_EMAIL.
+PREDEFINED_VALID_EMAIL: Variabel statis yang digunakan untuk tujuan pengujian; jika email yang dimasukkan cocok dengan ini, simulasi reset akan berhasil.
+
+
+AdminBookListFragment.kt (Halaman Daftar Buku Admin)
+
+Fungsi: Menampilkan daftar buku yang ada di sistem untuk dikelola oleh admin, termasuk opsi untuk mengedit dan menghapus buku.
+
+Komponen UI (berdasarkan FragmentAdminBookListBinding):
+rvAdminBooks (RecyclerView): Menampilkan daftar buku.
+tvEmptyState (TextView): Teks yang muncul jika daftar buku kosong.
+progressBar (ProgressBar): Indikator loading saat memuat data.
+fabAddBook (FloatingActionButton): Tombol mengambang untuk menambahkan buku baru.
+
+Fungsi Utama:
+onCreateView(): Mengembangkan layout fragmen.
+onViewCreated(): Mengatur RecyclerView, mengamati ViewModel untuk data buku dan status loading, serta mengatur OnClickListener untuk tombol tambah buku.
+setupRecyclerView(): Menginisialisasi AdminBookAdapter dan mengaitkannya dengan RecyclerView, serta mendefinisikan aksi onEditClick dan onDeleteClick.
+observeViewModel(): Mengamati LiveData dari AdminBookViewModel untuk memperbarui daftar buku, status loading, pesan sukses, dan pesan error.
+showDeleteConfirmationDialog(): Menampilkan dialog konfirmasi sebelum menghapus buku.
+onResume(): Memuat ulang daftar buku setiap kali fragmen dilanjutkan.
+
+
+CollectionFragment.kt (Halaman Koleksi Buku)
+
+Fungsi: Menampilkan daftar buku yang telah diunduh atau dikoleksi oleh pengguna, dengan kemampuan pencarian.
+
+Komponen UI (berdasarkan FragmentCollectionBinding):
+myBooksRecyclerView (RecyclerView): Menampilkan daftar buku yang diunduh.
+searchView (TextInputEditText di dalam TextInputLayout): Kolom input untuk mencari buku dalam koleksi.
+emptyMyBooksView (TextView): Teks yang ditampilkan jika koleksi buku kosong.
+
+Fungsi Utama:
+onCreateView(): Mengembangkan layout fragmen.
+onViewCreated(): Mengatur LinearLayoutManager untuk RecyclerView, memuat dan menampilkan buku-buku yang diunduh, dan mengatur addTextChangedListener untuk fungsionalitas pencarian.
+loadAndDisplayBooks(): Mengambil daftar buku yang diunduh dari PrefManager, memperbarui visibilitas emptyMyBooksView, dan menginisialisasi atau memperbarui DownloadedBooksAdapter.
+onResume(): Memuat ulang daftar buku setiap kali fragmen dilanjutkan untuk memastikan data terbaru.
+
+
+HomeFragment.kt (Halaman Beranda)
+
+Fungsi: Menampilkan berbagai kategori buku (Trending, Fantasy, Fiction, Self-Help) dalam daftar horizontal dan menyediakan fungsionalitas pencarian.
+
+Komponen UI (berdasarkan FragmentHomeBinding):
+search (EditText di dalam CardView): Kolom input pencarian.
+rvTrending (RecyclerView): Daftar buku yang sedang tren (horizontal).
+tvTrending (TextView): Judul untuk bagian "Trending".
+rvCategoryFantasy (RecyclerView): Daftar buku kategori Fantasy (horizontal).
+tvCategoryFantasy (TextView): Judul untuk kategori "Fantasy".
+rvCategoryFiction (RecyclerView): Daftar buku kategori Fiction (horizontal).
+tvCategoryFiction (TextView): Judul untuk kategori "Fiction".
+rvCategorySelfHelp (RecyclerView): Daftar buku kategori Self-Help (horizontal).
+tvCategorySelfHelp (TextView): Judul untuk kategori "Self-Help".
+
+Fungsi Utama:
+onCreateView(): Mengembangkan layout fragmen.
+onViewCreated(): Mengatur addTextChangedListener untuk pencarian buku. Menginisialisasi RecyclerView untuk setiap kategori dengan LinearLayoutManager.HORIZONTAL dan BookAdapter. Mengamati LiveData dari HomeViewModel untuk memperbarui daftar buku di setiap kategori dan menangani status loading serta pesan error.
+setupBookRecyclerView(): Fungsi helper untuk menginisialisasi atau memperbarui adapter RecyclerView dan mengatur visibilitas judul kategori berdasarkan apakah daftar buku kosong atau tidak.
+
+
+AddBookActivity.kt (Halaman Tambah Buku Baru)
+
+Fungsi: Memungkinkan admin untuk menambahkan buku baru ke sistem dengan mengisi detail buku, memilih gambar sampul, dan mengunggah file PDF.
+
+Komponen UI (berdasarkan ActivityAddBookBinding):
+btn_back (ImageButton): Tombol kembali.
+tv_title (TextView): Judul halaman "Tambah Buku Baru".
+til_judul, et_judul (TextInputLayout, TextInputEditText): Input untuk judul buku.
+til_penulis, et_penulis: Input untuk penulis buku.
+til_deskripsi, et_deskripsi: Input untuk deskripsi buku.
+til_kategori, et_kategori: Input untuk kategori buku.
+til_harga, et_harga: Input untuk harga buku.
+til_format, et_format: Input untuk format buku (misal: PDF, EPUB).
+til_release_date, et_release_date: Input untuk tanggal rilis.
+til_total_pages, et_total_pages: Input untuk jumlah halaman.
+iv_cover_preview (ImageView): Menampilkan pratinjau gambar sampul yang dipilih.
+btn_upload_cover (Button): Tombol untuk memilih gambar sampul dari galeri.
+fileNameText (TextView): Menampilkan nama file PDF yang dipilih.
+selectBookFileButton (Button): Tombol untuk memilih file PDF.
+btn_add_book (Button): Tombol untuk menambahkan buku.
+
+Fungsi Utama:
+onCreate(): Menginisialisasi binding, menyembunyikan support action bar, dan mengatur OnClickListener untuk tombol kembali, pilih gambar sampul, pilih file PDF, dan tombol tambah buku.
+pickImageLauncher: ActivityResultLauncher untuk memilih gambar dari galeri.
+pickPdfLauncher: ActivityResultLauncher untuk memilih file PDF.
+addBook(): Mengambil input dari kolom-kolom, melakukan validasi dasar, membuat CreateBookRequest, dan memanggil BookRepository().uploadBook untuk mengunggah metadata dan file buku.
+
+
+AdminActivity.kt (Halaman Admin Dashboard)
+
+Fungsi: Bertindak sebagai dashboard utama untuk admin, memungkinkan navigasi ke pengelolaan pengguna dan buku, serta menampilkan ringkasan aplikasi (meskipun data ringkasan belum diimplementasikan di sini).
+
+Komponen UI (berdasarkan ActivityAdminBinding):
+tv_admin_dashboard_title (TextView): Judul dashboard admin.
+admin_dashboard_scroll_view (NestedScrollView): Kontainer yang dapat digulir untuk ringkasan aplikasi dan menu manajemen.
+tv_ringkasan_aplikasi (TextView): Judul bagian "Ringkasan Aplikasi".
+GridLayout (berisi beberapa CardView): Menampilkan kartu-kartu ringkasan (Total Pengguna, Total Buku, Permintaan Baru, Laporan Baru).
+Setiap CardView berisi TextView untuk hitungan (misal: tv_total_pengguna_count) dan TextView untuk label (misal: "Total Pengguna").
+tv_menu_manajemen (TextView): Judul bagian "Menu Manajemen".
+btn_kelola_pengguna (Button): Tombol untuk menuju halaman pengelolaan pengguna.
+btn_kelola_buku (Button): Tombol untuk menuju halaman pengelolaan buku.
+btn_admin_logout (Button): Tombol untuk logout dari sesi admin.
+admin_fragment_container (FragmentContainerView): Wadah untuk menampilkan fragmen pengelolaan pengguna atau buku.
+
+Fungsi Utama:
+onCreate(): Menginisialisasi binding, mengatur toolbar, menampilkan tampilan dashboard awal, dan mengatur OnClickListener untuk tombol "Kelola Pengguna", "Kelola Buku", dan "Logout".
+setupToolbar(): Mengatur judul toolbar dan visibilitas tombol kembali.
+showDashboardView(): Menampilkan admin_dashboard_scroll_view dan menyembunyikan admin_fragment_container.
+showFragmentContainer(): Menyembunyikan admin_dashboard_scroll_view dan menampilkan admin_fragment_container.
+loadFragment(): Memuat fragmen yang ditentukan ke dalam admin_fragment_container dan menambahkannya ke back stack.
+onBackPressed(): Menangani navigasi kembali, baik untuk kembali ke fragmen sebelumnya atau ke dashboard, atau keluar dari aplikasi.
+onSupportNavigateUp(): Menangani klik pada tombol kembali di toolbar.
+
+
+EditBookActivity.kt (Halaman Edit Buku Admin)
+
+Fungsi: Memungkinkan admin untuk mengedit detail buku yang sudah ada, termasuk mengganti gambar sampul dan file PDF.
+
+Komponen UI (berdasarkan ActivityEditBookBinding):
+btn_back (ImageButton): Tombol kembali.
+tv_title (TextView): Judul halaman "Edit Buku".
+til_judul, et_judul (TextInputLayout, TextInputEditText): Input untuk judul buku.
+til_penulis, et_penulis: Input untuk penulis buku.
+til_deskripsi, et_deskripsi: Input untuk deskripsi buku.
+til_kategori, et_kategori: Input untuk kategori buku.
+til_harga, et_harga: Input untuk harga buku.
+til_format, et_format: Input untuk format buku (misal: PDF, EPUB).
+til_release_date, et_release_date: Input untuk tanggal rilis.
+til_total_pages, et_total_pages: Input untuk jumlah halaman.
+iv_cover_preview (ImageView): Menampilkan pratinjau gambar sampul yang dipilih atau yang sudah ada.
+btn_upload_cover (Button): Tombol untuk memilih gambar sampul baru.
+fileNameText (TextView): Menampilkan nama file PDF yang dipilih atau yang sudah ada.
+selectBookFileButton (Button): Tombol untuk memilih file PDF baru.
+btn_save_book (Button): Tombol untuk menyimpan perubahan buku.
+btn_delete_book (Button): Tombol untuk menghapus buku.
+
+Fungsi Utama:
+onCreate(): Menginisialisasi binding, menyembunyikan support action bar, mengatur OnClickListener untuk tombol kembali, memuat detail buku berdasarkan EXTRA_BOOK_ID, dan mengatur listener untuk tombol pilih gambar/PDF, simpan, dan hapus.
+pickImageLauncher: ActivityResultLauncher untuk memilih gambar.
+pickPdfLauncher: ActivityResultLauncher untuk memilih file PDF.
+fetchBookDetails(): Mengambil detail buku dari API berdasarkan ID dan menampilkannya di UI.
+displayBookDetails(): Mengisi kolom-kolom input dengan data buku yang diterima dan memuat gambar sampul.
+saveBookChanges(): Mengambil input yang diperbarui, melakukan validasi, memanggil BookRepository().update() untuk metadata, dan BookRepository().uploadBook() jika ada file baru (gambar/PDF) yang dipilih.
+showDeleteConfirmationDialog(): Menampilkan dialog konfirmasi sebelum menghapus buku.
+deleteBook(): Memanggil BookRepository().delete() untuk menghapus buku dari sistem.
+
+
+ChangePasswordActivity.kt (Halaman Ganti Kata Sandi)
+
+Fungsi: Memungkinkan pengguna yang sudah login untuk mengubah kata sandi mereka.
+
+Komponen UI (berdasarkan ActivityChangePasswordBinding):
+btnKembali (ImageButton): Tombol untuk kembali.
+etOldPassword (TextInputEditText): Kolom input untuk kata sandi lama.
+etNewPassword (TextInputEditText): Kolom input untuk kata sandi baru.
+etConfirmNewPassword (TextInputEditText): Kolom input untuk konfirmasi kata sandi baru.
+btnChangePassword (Button): Tombol untuk mengirim permintaan ganti kata sandi.
+
+Fungsi Utama:
+onCreate(): Menginisialisasi binding, mengatur OnClickListener untuk tombol ganti kata sandi. Melakukan validasi input (tidak boleh kosong, kata sandi baru harus cocok).
+changePassword(): Memanggil UserRepository().changePassword() untuk mengirim permintaan ganti kata sandi ke API. Menampilkan pesan sukses atau error berdasarkan respons.
+
+
+EditProfileActivity.kt (Halaman Edit Profil Pengguna)
+
+Fungsi: Memungkinkan pengguna untuk mengedit informasi profil mereka seperti nama dan email.
+
+Komponen UI (berdasarkan ID yang ditemukan dengan findViewById):
+btn_kembali (ImageButton): Tombol kembali.
+tv_judul (TextView): Judul halaman "Edit Profil".
+et_nama (EditText): Kolom input untuk nama pengguna.
+et_email (EditText): Kolom input untuk email pengguna.
+btn_simpan (Button): Tombol untuk menyimpan perubahan profil.
+
+Fungsi Utama:
+onCreate(): Menginisialisasi komponen UI, mengambil data pengguna saat ini dari UserRepository().getCurrentUser() dan mengisinya ke kolom input. Mengatur OnClickListener untuk tombol simpan dan kembali.
+toCreateUserRequest(): Fungsi ekstensi pada objek User untuk mengkonversinya menjadi CreateUserRequest yang digunakan untuk pembaruan.
+btnSimpan.setOnClickListener: Mengambil nilai nama dan email yang diperbarui, memanggil UserRepository().updateUser() untuk menyimpan perubahan.
+
+
+ProfileFragment.kt (Halaman Profil Pengguna)
+
+Fungsi: Menampilkan informasi profil pengguna (nama, email), memungkinkan pengguna untuk mengubah avatar, mengedit profil, mengubah kata sandi, dan logout.
+
+Komponen UI (berdasarkan FragmentProfileBinding):
+ivAvatar (ImageView): Menampilkan avatar pengguna.
+tvNama (TextView): Menampilkan nama pengguna.
+tvEmail (TextView): Menampilkan email pengguna.
+btnUbahProfil (Button): Tombol untuk menuju aktivitas EditProfileActivity.
+btnUbahPassword (Button): Tombol untuk menuju aktivitas ChangePasswordActivity.
+btnLogout (Button): Tombol untuk logout dari aplikasi.
+
+Fungsi Utama:
+onCreateView(): Mengembangkan (inflates) layout fragmen.
+onViewCreated(): Menginisialisasi tampilan.
+Memuat avatar pengguna (secara default dari drawable jika selectedImageUri null).
+Melakukan panggilan asinkron ke UserRepository().getCurrentUser() untuk mendapatkan dan menampilkan nama serta email pengguna.
+Mengatur OnClickListener untuk ivAvatar yang meluncurkan pickImageLauncher untuk memilih gambar.
+Mengatur OnClickListener untuk btnUbahProfil untuk memulai EditProfileActivity.
+Mengatur OnClickListener untuk btnUbahPassword untuk memulai ChangePasswordActivity.
+Mengatur OnClickListener untuk btnLogout yang menampilkan AlertDialog konfirmasi logout. Jika dikonfirmasi, SessionManager.logoutUser() dipanggil dan pengguna diarahkan ke LoginActivity.
+pickImageLauncher: ActivityResultLauncher yang digunakan untuk memilih gambar dari galeri perangkat dan menampilkannya sebagai avatar.
+onDestroyView(): Membersihkan binding saat tampilan fragmen dihancurkan.
+
+
+SplashActivity.kt (Splash Screen)
+
+Fungsi: Menampilkan layar pembuka (splash screen) untuk durasi tertentu sebelum mengarahkan pengguna ke LoginActivity.
+
+Komponen UI (berdasarkan ActivitySplashBinding):
+Tidak ada interaksi langsung dengan komponen UI yang spesifik dalam logika kode ini, hanya menggunakan binding untuk layout.
+
+Fungsi Utama:
+onCreate(): Menginisialisasi binding, dan menggunakan Handler().postDelayed() untuk menunda eksekusi Intent yang mengarahkan ke LoginActivity setelah SPLASH_TIME_OUT (3000 milidetik atau 3 detik). Setelah mengarahkan, aktivitas di-finish() agar tidak bisa kembali ke splash screen.
+
+
+UserManageViewModel.kt (ViewModel Pengelolaan Pengguna)
+
+Fungsi: Menyediakan dan mengelola data terkait pengguna untuk tampilan pengelolaan pengguna oleh admin, serta menangani logika bisnis seperti memuat, mencari, dan menghapus pengguna.
+
+Komponen LiveData/Flow:
+_users (MutableLiveData<List<User>>): Menyimpan daftar semua pengguna yang dimuat dari repository. users adalah versi publiknya (LiveData).
+_isLoading (MutableLiveData<Boolean>): Menunjukkan status loading (sedang memuat data atau tidak). isLoading adalah versi publiknya.
+_eventSuccess (MutableSharedFlow<String>): Mengirimkan pesan sukses satu kali (misal: "User berhasil dihapus"). eventSuccess adalah versi publiknya (asSharedFlow()).
+_eventError (MutableSharedFlow<String>): Mengirimkan pesan error satu kali. eventError adalah versi publiknya (asSharedFlow()).
+_searchQuery (MutableLiveData<String>): Menyimpan teks pencarian yang dimasukkan pengguna. searchQuery adalah versi publiknya.
+filteredUsers (MediatorLiveData<List<User>>): Menggabungkan users dan _searchQuery untuk menyediakan daftar pengguna yang sudah difilter.
+
+Fungsi Utama:
+loadUsers(): Memuat daftar semua pengguna dari UserRepository secara asinkron. Mengatur _isLoading dan mengemisi _eventError jika ada kegagalan.
+deleteUser(userId: Int): Menghapus pengguna berdasarkan ID-nya melalui UserRepository. Setelah berhasil, memuat ulang daftar pengguna dan mengemisi _eventSuccess.
+setSearchQuery(query: String): Memperbarui nilai _searchQuery untuk memicu pemfilteran filteredUsers.
+filter(users: List<User>?, query: String?): Fungsi privat yang melakukan logika pemfilteran daftar pengguna berdasarkan nama atau email.
+
+
+MainActivity.kt (Halaman Utama Aplikasi)//
+
+Fungsi: Aktivitas utama yang menampung fragmen-fragmen UI utama (Home, Collection, Profile) dan mengelola navigasi melalui BottomNavigationView.
+
+Komponen UI (berdasarkan ActivityMainBinding):
+fragmentContainer (FragmentContainerView): Wadah di mana fragmen akan ditampilkan.
+bottomNavigation (BottomNavigationView): Bar navigasi di bagian bawah layar.
+
+Fungsi Utama:
+onCreate(): Menginisialisasi binding, dan secara default menampilkan HomeFragment saat aplikasi pertama kali dimulai. Memanggil setupBottomNavigation().
+setupBottomNavigation(): Mengatur listener untuk item yang dipilih pada bottomNavigation. Berdasarkan item yang dipilih (Home, Collection, atau Profile), fragmen yang sesuai akan diganti di fragmentContainer.
+
+
+LoginActivity.kt (Halaman Login)
+
+Fungsi: Antarmuka untuk pengguna masuk ke aplikasi. Menyediakan fungsionalitas login untuk admin dan pengguna uji coba yang hardcoded, serta tautan ke "Lupa Kata Sandi" dan "Daftar".
+
+Komponen UI (berdasarkan ActivityLoginBinding):
+editTextEmailLogin (TextInputEditText): Kolom input untuk email pengguna.
+editTextPasswordLogin (TextInputEditText): Kolom input untuk kata sandi pengguna.
+buttonLogin (Button): Tombol untuk proses login.
+textViewForgotPassword (TextView): Tautan ke ForgotPasswordActivity.
+textViewRegister (TextView): Tautan ke RegisterActivity.
+
+Fungsi Utama:
+onCreate(): Menginisialisasi binding.
+Memeriksa status login menggunakan SessionManager.isLoggedIn(). Jika sudah login, mengarahkan langsung ke AdminActivity (jika admin) atau MainActivity (jika user biasa).
+Mengatur OnClickListener untuk buttonLogin:
+Melakukan validasi input email dan kata sandi (tidak boleh kosong).
+Memeriksa kredensial dengan admin hardcoded (ADMIN_EMAIL, ADMIN_PASSWORD). Jika cocok, membuat sesi admin dan mengarahkan ke AdminActivity.
+Memeriksa kredensial dengan user uji coba hardcoded (USER_TEST_EMAIL, USER_TEST_PASSWORD). Jika cocok, membuat sesi user biasa dan mengarahkan ke MainActivity.
+Jika tidak cocok dengan kredensial hardcoded, menampilkan pesan error.
+Mengatur OnClickListener untuk textViewForgotPassword untuk memulai ForgotPasswordActivity.
+Mengatur OnClickListener untuk textViewRegister untuk memulai RegisterActivity.
+MapsToUserHome(): Mengarahkan ke MainActivity.
+MapsToAdminHome(): Mengarahkan ke AdminActivity.
+
+
+PdfViewerActivity.kt (Halaman Penampil PDF)
+
+Fungsi: Menampilkan dokumen PDF menggunakan library PdfView dari Barteksc, dan menyimpan progres halaman terakhir yang dibaca.
+
+Komponen UI (berdasarkan ActivityPdfViewerBinding):
+pdfView (com.github.barteksc.pdfviewer.PDFView): Komponen utama untuk merender dan menampilkan file PDF.
+progressBarPdf (ProgressBar): Indikator loading yang muncul saat PDF sedang dimuat.
+
+Fungsi Utama:
+onCreate(): Menginisialisasi binding.
+Mengambil bookId, bookFileName, dan bookTitle dari Intent. Melakukan validasi untuk memastikan informasi buku valid.
+Mengatur judul ActionBar dengan bookTitle dan mengaktifkan tombol kembali.
+Memeriksa apakah direktori unduhan ada dan file PDF tersedia di dalamnya.
+Jika file ada, mengambil halaman terakhir yang dibaca dari PrefManager dan memanggil displayPdf().
+displayPdf(pdfFile: File): Memuat file PDF ke pdfView. Mengatur halaman awal, listener perubahan halaman (onPageChange), dan listener penyelesaian pemuatan (onLoad). Menampilkan progressBarPdf saat memuat dan menyembunyikannya setelah selesai.
+onPageChanged(page: Int, pageCount: Int): Callback saat halaman PDF berubah. Memperbarui currentPage dan subtitle ActionBar untuk menampilkan nomor halaman saat ini.
+loadComplete(nbPages: Int): Callback saat PDF selesai dimuat. Menyembunyikan progressBarPdf dan menampilkan Toast serta memperbarui subtitle ActionBar dengan jumlah total halaman.
+onPause(): Menyimpan halaman terakhir yang dibaca menggunakan PrefManager.saveLastReadPage() saat aktivitas dijeda.
+onDestroy(): Menyimpan halaman terakhir yang dibaca saat aktivitas dihancurkan.
+onSupportNavigateUp(): Menangani klik tombol kembali pada ActionBar.
+
+
+RegisterActivity.kt (Halaman Registrasi)
+
+Fungsi: Antarmuka untuk pengguna baru mendaftar akun dengan memasukkan nama, email, dan kata sandi.
+
+Komponen UI (berdasarkan ActivityRegisterBinding):
+etNama (TextInputEditText): Kolom input untuk nama pengguna.
+etEmail (TextInputEditText): Kolom input untuk email pengguna.
+etPassword (TextInputEditText): Kolom input untuk kata sandi pengguna.
+btnRegister (Button): Tombol untuk melakukan pendaftaran.
+tvLoginLink (TextView): Tautan yang mengarahkan kembali ke LoginActivity.
+
+Fungsi Utama:
+onCreate(): Menginisialisasi binding.
+Mengatur OnClickListener untuk btnRegister: Melakukan validasi input (tidak boleh kosong). Jika valid, menampilkan Toast keberhasilan pendaftaran dan mengarahkan ke LoginActivity.
+Mengatur OnClickListener untuk tvLoginLink untuk kembali ke LoginActivity.
+
+
+UserManageFragment.kt (Halaman Pengelolaan Pengguna Admin)
+
+Fungsi: Menampilkan daftar pengguna yang terdaftar untuk memungkinkan admin mencari dan menghapus pengguna.
+
+Komponen UI (berdasarkan FragmentUserManageBinding):
+rvAdminUsers (RecyclerView): Menampilkan daftar pengguna.
+searchView (TextInputEditText): Kolom input untuk mencari pengguna berdasarkan nama atau email.
+emptyUserView (TextView): Teks yang ditampilkan jika tidak ada pengguna ditemukan.
+progressBar (ProgressBar): Indikator loading saat data pengguna sedang dimuat.
+
+Fungsi Utama:
+onCreateView(): Mengembangkan layout fragmen.
+onViewCreated(): Mengatur RecyclerView, mengamati ViewModel untuk data pengguna dan status loading, serta mengatur addTextChangedListener untuk fungsionalitas pencarian.
+setupRecyclerView(): Menginisialisasi AdminUserAdapter dan mengaitkannya dengan RecyclerView, serta mendefinisikan aksi onDeleteClick.
+observeViewModel(): Mengamati LiveData dari UserManageViewModel (filteredUsers, isLoading, eventSuccess, eventError) untuk memperbarui daftar pengguna, status loading, pesan sukses, dan pesan error.
+showDeleteConfirmationDialog(): Menampilkan dialog konfirmasi sebelum menghapus pengguna.
+onDestroyView(): Membersihkan binding saat tampilan fragmen dihancurkan.
+
+
+SetNewPasswordActivity.kt (Halaman Atur Kata Sandi Baru)
+
+Fungsi: Memungkinkan pengguna untuk mengatur kata sandi baru setelah proses reset kata sandi, yang biasanya diakses setelah tautan reset diklik atau email valid diverifikasi.
+
+Komponen UI (berdasarkan ActivitySetNewPasswordBinding):
+tv_title (TextView): Menampilkan judul "Password Baru".
+TextView: Menampilkan deskripsi halaman.
+til_new_password (TextInputLayout): Input untuk kata sandi baru.
+etNewPassword (TextInputEditText): Kolom input untuk kata sandi baru.
+til_confirm_password (TextInputLayout): Input untuk konfirmasi kata sandi baru.
+etConfirmPassword (TextInputEditText): Kolom input untuk konfirmasi kata sandi baru.
+btnSetPassword (MaterialButton): Tombol untuk menyimpan kata sandi baru.
+
+Fungsi Utama:
+onCreate(): Menginisialisasi binding.
+Mengatur OnClickListener untuk btnSetPassword.
+Mengambil kata sandi baru, konfirmasi kata sandi, dan email dari Intent.
+Melakukan validasi input: memeriksa apakah email kosong, kata sandi baru dan konfirmasi tidak kosong, dan apakah kata sandi baru cocok dengan konfirmasinya.
+Jika validasi berhasil, memanggil AuthRepository().setNewPassword() secara asinkron untuk memperbarui kata sandi.
+Jika pembaruan berhasil, menampilkan Toast sukses, dan mengarahkan pengguna ke LoginActivity dengan menghapus back stack.
+Jika gagal, menampilkan Toast error.
+toast(msg: String): Fungsi helper privat untuk menampilkan pesan Toast.

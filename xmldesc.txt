@@ -1,0 +1,642 @@
+activity_splash.xml (Splash Screen)
+
+Fungsi: Tampilan awal aplikasi yang muncul saat aplikasi dimuat.
+Root Layout: androidx.constraintlayout.widget.ConstraintLayout
+android:background: @color/colorPrimaryGreen (warna latar belakang hijau)
+Komponen:
+ImageView (ID: iv_logo)
+Menampilkan logo aplikasi (@mipmap/ic_launcher).
+android:layout_width: 120dp, android:layout_height: 120dp
+android:contentDescription: @string/app_logo
+TextView
+Menampilkan nama aplikasi (@string/app_name).
+android:textSize: 28sp
+android:layout_marginTop: 16dp
+
+
+fragment_home.xml (Halaman Beranda)
+
+Fungsi: Menampilkan berbagai kategori buku dan bagian "Trending".
+Root Layout: androidx.constraintlayout.widget.ConstraintLayout
+android:background: #FFFFFF (warna latar belakang putih)
+Komponen:
+CardView (ID: card_search)
+Fungsi: Berisi kolom pencarian.
+app:cardCornerRadius: 25dp
+LinearLayout di dalamnya:
+ImageView (untuk ikon pencarian ic_search).
+EditText (ID: search)
+android:hint: @string/cari_buku_penulis_atau_genre
+android:imeOptions: actionSearch
+androidx.core.widget.NestedScrollView
+Fungsi: Memungkinkan konten di dalamnya untuk digulir.
+LinearLayout di dalamnya berisi beberapa TextView dan RecyclerView untuk menampilkan kategori buku:
+TextView (ID: tv_trending)
+Menampilkan judul "Trending".
+android:text: @string/trending
+android:textSize: 20sp
+androidx.recyclerview.widget.RecyclerView (ID: rv_trending)
+Menampilkan daftar buku secara horizontal (orientation: horizontal).
+tools:listitem: @layout/item_book_horizontal (menunjukkan tata letak untuk setiap item buku).
+TextView (ID: tv_category_fantasy), rv_category_fantasy (Untuk kategori "Fantasy").
+TextView (ID: tv_category_fiction), rv_category_fiction (Untuk kategori "Fiction").
+TextView (ID: tv_category_self_help), rv_category_self_help (Untuk kategori "Self-Help").
+
+
+item_book_horizontal.xml (Item Buku Horizontal di Beranda)
+
+Fungsi: Tata letak untuk setiap item buku yang ditampilkan secara horizontal di halaman beranda.
+Root Layout: androidx.cardview.widget.CardView
+app:cardCornerRadius: 8dp, app:cardElevation: 4dp
+Komponen:
+LinearLayout (orientasi vertikal)
+ImageView (ID: iv_book_cover)
+Menampilkan sampul buku (@drawable/placeholder_book_cover).
+android:scaleType: centerCrop
+TextView (ID: tv_book_title)
+Menampilkan judul buku.
+android:maxLines: 2, android:ellipsize: end
+android:textStyle: bold
+TextView (ID: tv_book_author)
+Menampilkan nama penulis.
+android:singleLine: true, android:ellipsize: end
+
+
+fragment_collection.xml (Halaman Koleksi Buku)
+
+Fungsi: Menampilkan daftar buku yang dikoleksi oleh pengguna.
+Root Layout: androidx.constraintlayout.widget.ConstraintLayout
+android:background: #F7F9FC
+Komponen:
+TextView (ID: headerTitle)
+Fungsi: Judul halaman "Koleksi Saya".
+android:text: @string/title_koleksi
+android:textSize: 30sp
+com.google.android.material.textfield.TextInputLayout (ID: searchContainer)
+Fungsi: Berisi kolom pencarian untuk koleksi buku.
+app:startIconDrawable: @drawable/ic_search
+com.google.android.material.textfield.TextInputEditText (ID: searchView)
+android:hint: @string/cari_buku_penulis_atau_genre
+android:imeOptions: actionSearch
+TextView (ID: emptyMyBooksView)
+Fungsi: Teks yang muncul jika tidak ada buku dalam koleksi.
+android:text: @string/belum_ada_buku
+android:visibility: gone (defaultnya tersembunyi)
+androidx.recyclerview.widget.RecyclerView (ID: myBooksRecyclerView)
+Fungsi: Menampilkan daftar buku dalam koleksi.
+app:layoutManager: androidx.recyclerview.widget.LinearLayoutManager (menampilkan daftar secara vertikal).
+android:contentDescription: @string/koleksi_saya
+
+
+collection_item_book.xml (Item Buku dalam Koleksi)
+
+Fungsi: Tata letak untuk setiap item buku di halaman koleksi.
+Root Layout: androidx.cardview.widget.CardView
+android:layout_margin: 8dp, app:cardCornerRadius: 8dp
+android:foreground: ?attr/selectableItemBackground (memberikan efek sentuhan)
+android:clickable, android:focusable
+Komponen:
+LinearLayout (orientasi horizontal)
+ImageView (ID: bookCover)
+Menampilkan sampul buku (@drawable/placeholder_cover).
+android:layout_width: 100dp, android:layout_height: 150dp
+android:contentDescription: @string/cover_buku
+LinearLayout (orientasi vertikal) (Detail Buku)
+TextView (ID: bookTitle)
+Judul buku.
+android:maxLines: 1, android:ellipsize: end
+android:textStyle: bold
+TextView (ID: bookAuthor)
+Nama penulis.
+android:maxLines: 1, android:ellipsize: end
+LinearLayout (Wadah Rating)
+TextView (ID: bookRating)
+Menampilkan rating buku (@string/rating_count).
+ImageButton (ID: deleteButton)
+Fungsi: Tombol untuk menghapus buku dari koleksi.
+android:src: @drawable/delete, app:tint: @color/red
+android:contentDescription: @string/hapus_buku_koleksi
+
+
+fragment_profile.xml (Halaman Profil Pengguna)
+
+Fungsi: Menampilkan informasi profil pengguna dan opsi pengaturan.
+Root Layout: androidx.constraintlayout.widget.ConstraintLayout
+android:background: @color/colorBackgroundLight
+Komponen:
+TextView (ID: tv_title)
+Fungsi: Judul halaman "Profil".
+android:text: @string/profile
+android:textSize: 30sp
+FrameLayout (ID: avatar_container)
+Fungsi: Wadah untuk avatar pengguna.
+android:background: @drawable/avatar_circle_border
+ImageView (ID: iv_avatar)
+Menampilkan avatar pengguna (@drawable/profile).
+android:contentDescription: @string/user_avatar
+TextView (ID: tv_nama)
+Menampilkan nama pengguna (@string/nama).
+android:textStyle: bold
+TextView (ID: tv_email)
+Menampilkan email pengguna (@string/email_example).
+androidx.cardview.widget.CardView (ID: card_actions)
+Fungsi: Wadah untuk tombol aksi profil.
+LinearLayout di dalamnya (orientasi vertikal) berisi tombol-tombol:
+Button (ID: btn_ubah_profil)
+Fungsi: Tombol "Ubah Profil".
+android:drawableStart: @drawable/edit
+android:text: @string/ubah_profil
+View (Pembatas)
+Button (ID: btn_ubah_password)
+Fungsi: Tombol "Ubah Kata Sandi".
+android:drawableStart: @drawable/lock
+android:text: @string/ubah_kata_sandi
+View (Pembatas)
+Button (ID: btn_logout)
+Fungsi: Tombol "Logout".
+android:drawableStart: @drawable/logout
+android:text: @string/logout
+
+
+fragment_admin_book_list.xml (Halaman Daftar Buku Admin)
+
+Fungsi: Digunakan oleh admin untuk mengelola daftar buku.
+Root Layout: androidx.constraintlayout.widget.ConstraintLayout
+android:background: #F7F9FC
+Komponen:
+TextView (ID: tv_empty_state)
+Fungsi: Teks yang muncul jika tidak ada buku terdaftar.
+android:text: "Tidak ada buku terdaftar."
+android:visibility: gone
+androidx.recyclerview.widget.RecyclerView (ID: rv_admin_books)
+Fungsi: Menampilkan daftar buku untuk admin.
+app:layoutManager: androidx.recyclerview.widget.LinearLayoutManager
+tools:listitem: @layout/item_admin_book
+ProgressBar (ID: progressBar)
+Fungsi: Indikator loading.
+android:visibility: gone
+com.google.android.material.floatingactionbutton.FloatingActionButton (ID: fab_add_book)
+Fungsi: Tombol mengambang untuk menambah buku baru.
+android:src: @drawable/ic_add
+android:contentDescription: "Tambah Buku"
+app:tint: @android:color/white
+
+
+item_admin_book.xml (Item Buku di Daftar Admin)
+
+Fungsi: Tata letak untuk setiap item buku yang ditampilkan di halaman daftar buku admin.
+Root Layout: androidx.cardview.widget.CardView
+android:layout_margin: 8dp, app:cardCornerRadius: 8dp, app:cardElevation: 4dp
+Komponen:
+androidx.constraintlayout.widget.ConstraintLayout
+ImageView (ID: iv_book_cover_admin)
+Menampilkan sampul buku.
+android:contentDescription: "Book Cover"
+TextView (ID: tv_book_title_admin)
+Judul buku.
+android:maxLines: 2, android:ellipsize: end
+android:textStyle: bold
+TextView (ID: tv_book_author_admin)
+Nama penulis.
+android:maxLines: 1, android:ellipsize: end
+TextView (ID: tv_book_category_admin)
+Kategori buku.
+android:maxLines: 1, android:ellipsize: end
+ImageButton (ID: btn_edit_book)
+Fungsi: Tombol untuk mengedit buku.
+android:src: @drawable/ic_edit
+android:contentDescription: "Edit Book"
+ImageButton (ID: btn_delete_book_item)
+Fungsi: Tombol untuk menghapus buku.
+android:src: @drawable/ic_delete
+android:contentDescription: "Delete Book"
+
+
+fragment_user_manage.xml (Halaman Pengelolaan Pengguna Admin)
+
+Fungsi: Digunakan oleh admin untuk mengelola pengguna.
+Root Layout: androidx.constraintlayout.widget.ConstraintLayout
+android:background: #F7F9FC
+Komponen:
+com.google.android.material.textfield.TextInputLayout (ID: searchViewContainer)
+Fungsi: Kolom pencarian untuk pengguna.
+app:startIconDrawable: @drawable/ic_search
+com.google.android.material.textfield.TextInputEditText (ID: searchView)
+android:hint: "Cari Nama atau Email Pengguna"
+TextView (ID: emptyUserView)
+Fungsi: Teks yang muncul jika tidak ada pengguna ditemukan.
+android:text: "Tidak ada pengguna ditemukan."
+android:visibility: gone
+androidx.recyclerview.widget.RecyclerView (ID: rvAdminUsers)
+Fungsi: Menampilkan daftar pengguna untuk admin.
+app:layoutManager: androidx.recyclerview.widget.LinearLayoutManager
+tools:listitem: @layout/item_admin_user
+ProgressBar (ID: progressBar)
+Fungsi: Indikator loading.
+android:visibility: gone
+
+
+item_admin_user.xml (Item Pengguna di Daftar Admin)
+
+Fungsi: Tata letak untuk setiap item pengguna yang ditampilkan di halaman pengelolaan pengguna admin.
+Root Layout: androidx.cardview.widget.CardView
+android:layout_margin: 8dp, app:cardCornerRadius: 8dp, app:cardElevation: 2dp
+Komponen:
+LinearLayout (orientasi horizontal)
+ImageView (ID: userAvatar)
+Menampilkan avatar pengguna (@drawable/profile).
+android:contentDescription: @string/profile
+LinearLayout (orientasi vertikal)
+TextView (ID: userName)
+Nama pengguna.
+android:text: @string/nama
+android:textStyle: bold
+TextView (ID: userEmail)
+Email pengguna.
+android:text: @string/email_example
+TextView (ID: userRole)
+Peran pengguna (contoh: "Admin").
+android:text: "Peran Pengguna"
+ImageButton (ID: btnDeleteUser)
+Fungsi: Tombol untuk menghapus pengguna.
+android:src: @drawable/ic_delete
+app:tint: @color/red
+android:contentDescription: @string/hapus_pengguna
+
+
+activity_forgot_password.xml (Halaman Lupa Kata Sandi)
+
+Fungsi: Memungkinkan pengguna untuk mengatur ulang kata sandi mereka dengan memasukkan email.
+Root Layout: androidx.constraintlayout.widget.ConstraintLayout
+android:id: main
+Komponen:
+LinearLayout (ID: layout_forgot_password)
+Fungsi: Berisi semua elemen di halaman ini.
+LinearLayout (Header)
+ImageButton (ID: btnKembali)
+Tombol kembali.
+android:src: @drawable/ic_arrow_back
+android:contentDescription: "Kembali"
+TextView
+Judul "Reset Password".
+android:text: "Reset Password"
+android:textSize: 28sp
+com.google.android.material.textfield.TextInputLayout
+Fungsi: Input untuk email.
+app:startIconDrawable: @drawable/ic_person
+com.google.android.material.textfield.TextInputEditText (ID: editTextEmail)
+android:hint: "Masukkan Email Anda"
+android:inputType: textEmailAddress
+Button (ID: btnSendResetLink)
+Fungsi: Tombol "Reset".
+android:text: "Reset"
+android:backgroundTint: @color/colorPrimaryGreen
+
+
+activity_set_new_password.xml (Halaman Atur Kata Sandi Baru)
+
+Fungsi: Memungkinkan pengguna untuk mengatur kata sandi baru setelah proses reset.
+Root Layout: androidx.constraintlayout.widget.ConstraintLayout
+android:background: #F7F9FC
+Komponen:
+TextView (ID: tv_title)
+Fungsi: Judul "Password Baru".
+android:text: @string/password_baru
+android:textSize: 28sp
+TextView
+Fungsi: Deskripsi halaman.
+android:text: @string/deskripsi_password_baru
+com.google.android.material.textfield.TextInputLayout (ID: til_new_password)
+Fungsi: Input untuk kata sandi baru.
+app:endIconMode: password_toggle
+app:startIconDrawable: @drawable/lock
+com.google.android.material.textfield.TextInputEditText (ID: etNewPassword)
+android:hint: @string/password_baru
+android:inputType: textPassword
+com.google.android.material.textfield.TextInputLayout (ID: til_confirm_password)
+Fungsi: Input untuk konfirmasi kata sandi baru.
+app:endIconMode: password_toggle
+app:startIconDrawable: @drawable/lock
+com.google.android.material.textfield.TextInputEditText (ID: etConfirmPassword)
+android:hint: @string/konfirmasi_password
+android:inputType: textPassword
+com.google.android.material.button.MaterialButton (ID: btnSetPassword)
+Fungsi: Tombol "Simpan Password Baru".
+android:text: @string/simpan_password_baru
+
+
+activity_book_detail.xml (Halaman Detail Buku)
+
+Fungsi: Menampilkan informasi detail tentang sebuah buku.
+Root Layout: androidx.constraintlayout.widget.ConstraintLayout
+android:id: detailRootLayout
+android:background: #FFFFFF
+Komponen:
+ScrollView (ID: scrollViewContent)
+Fungsi: Memungkinkan konten detail buku untuk digulir.
+androidx.constraintlayout.widget.ConstraintLayout di dalamnya berisi:
+ImageButton (ID: btnBack)
+Tombol kembali.
+android:src: @drawable/ic_arrow_back
+ImageView (ID: ivBookmark)
+Ikon bookmark.
+android:src: @drawable/ic_bookmark
+ImageView (ID: ivBookCoverDetail)
+Sampul buku.
+android:src: @drawable/placeholder_book_cover
+TextView (ID: tvBookTitleDetail)
+Judul buku.
+android:textSize: 22sp
+TextView (ID: tvBookAuthorDetail)
+Nama penulis.
+android:textSize: 16sp
+RatingBar (ID: ratingBar)
+Rating buku.
+android:numStars: 5, android:rating: 4.8
+TextView (ID: tvRatingCount)
+Jumlah rating.
+android:text: "(230)"
+TextView (ID: tvDescriptionTitle)
+Judul "Deskripsi".
+TextView (ID: tvBookDescription)
+Deskripsi buku.
+GridLayout (ID: gridLayoutBookInfo)
+Menampilkan informasi buku seperti bahasa, tanggal rilis, penerbit, dll.
+Menggunakan TextView dengan style BookInfoLabel dan BookInfoValue.
+TextView (ID: tvReviewsTitle)
+Judul "Nilai dan Ulasan".
+LinearLayout (ID: layoutReview1), layoutReview2
+Menampilkan contoh ulasan buku.
+Button (ID: btnWriteReview)
+Fungsi: Tombol "Tulis Ulasan".
+android:backgroundTint: @color/colorPrimaryGreen
+LinearLayout (ID: bottomButtonContainer)
+Fungsi: Wadah tombol di bagian bawah layar.
+LinearLayout (ID: layoutTwoButtons)
+Button (ID: btnBacaPratinjau)
+Fungsi: Tombol "Baca Pratinjau".
+android:backgroundTint: @android:color/darker_gray
+Button (ID: btnDownload)
+Fungsi: Tombol "Download".
+android:backgroundTint: @color/colorPrimaryGreen
+Button (ID: btnBacaSingle)
+Fungsi: Tombol "Baca" (visibility gone by default).
+ProgressBar (ID: progressBarDownload)
+Fungsi: ProgressBar untuk download (visibility gone by default).
+
+
+activity_pdf_viewer.xml (Halaman Penampil PDF)
+
+Fungsi: Digunakan untuk menampilkan dokumen PDF.
+Root Layout: androidx.constraintlayout.widget.ConstraintLayout
+Komponen:
+com.github.barteksc.pdfviewer.PDFView (ID: pdfView)
+Fungsi: Komponen utama untuk menampilkan PDF.
+ProgressBar (ID: progressBarPdf)
+Fungsi: Indikator loading untuk PDF (visibility gone by default).
+
+
+activity_login.xml (Halaman Login)
+
+Fungsi: Antarmuka untuk masuk ke aplikasi.
+Root Layout: LinearLayout
+android:background: @color/colorBackgroundLight
+Komponen:
+TextView
+Fungsi: Judul "Login".
+android:textSize: 24sp
+com.google.android.material.textfield.TextInputLayout (ID: textInputLayoutEmail)
+Fungsi: Input untuk email.
+app:startIconDrawable: @drawable/ic_person
+com.google.android.material.textfield.TextInputEditText (ID: editTextEmailLogin)
+android:hint: @string/email
+android:inputType: textEmailAddress
+com.google.android.material.textfield.TextInputLayout (ID: textInputPasswordLogin)
+Fungsi: Input untuk kata sandi.
+app:endIconMode: password_toggle
+com.google.android.material.textfield.TextInputEditText (ID: editTextPasswordLogin)
+android:hint: @string/password
+android:inputType: textPassword
+TextView (ID: textViewForgotPassword)
+Fungsi: Teks "Lupa Password" yang dapat diklik.
+android:text: @string/lupa_password
+android:textColor: @color/colorPrimaryGreen
+Button (ID: buttonLogin)
+Fungsi: Tombol "Login".
+android:text: @string/login
+android:backgroundTint: @color/colorPrimaryGreen
+LinearLayout
+Fungsi: Berisi teks "Belum punya akun?" dan tautan "Daftar".
+TextView (ID: textViewRegister)
+Teks "Daftar" yang dapat diklik.
+android:textStyle: bold
+
+
+activity_edit_book.xml (Halaman Edit Buku Admin)
+
+Fungsi: Memungkinkan admin untuk mengedit detail buku.
+Root Layout: androidx.constraintlayout.widget.ConstraintLayout
+android:background: #F7F9FC
+Komponen:
+ImageButton (ID: btn_back)
+Tombol kembali.
+android:src: @drawable/ic_arrow_back
+TextView (ID: tv_title)
+Fungsi: Judul "Edit Buku".
+android:textSize: 24sp
+ScrollView
+Fungsi: Berisi formulir edit buku yang dapat digulir.
+LinearLayout di dalamnya berisi:
+com.google.android.material.textfield.TextInputLayout dan TextInputEditText untuk:
+Judul Buku (ID: til_judul, et_judul)
+Penulis (ID: til_penulis, et_penulis)
+Deskripsi (ID: til_deskripsi, et_deskripsi)
+Kategori (ID: til_kategori, et_kategori)
+Harga (ID: til_harga, et_harga)
+Format (ID: til_format, et_format)
+Tanggal Rilis (ID: til_release_date, et_release_date)
+Jumlah Halaman (ID: til_total_pages, et_total_pages)
+ImageView (ID: iv_cover_preview)
+Fungsi: Pratinjau sampul buku.
+android:src: @drawable/placeholder_book_cover
+Button (ID: btn_upload_cover)
+Fungsi: Tombol "Pilih Gambar Cover".
+TextView (ID: fileNameText)
+Menampilkan nama file yang dipilih.
+Button (ID: selectBookFileButton)
+Fungsi: Tombol "Pilih File PDF".
+Button (ID: btn_save_book)
+Fungsi: Tombol "Simpan Perubahan".
+android:backgroundTint: @color/colorPrimaryGreen
+Button (ID: btn_delete_book)
+Fungsi: Tombol "Hapus Buku Ini".
+android:backgroundTint: @android:color/holo_red_light
+
+
+activity_register.xml (Halaman Registrasi)
+
+Fungsi: Antarmuka untuk mendaftar akun baru.
+Root Layout: LinearLayout
+android:background: @color/colorBackgroundLight
+Komponen:
+TextView
+Fungsi: Judul "Daftar".
+android:textSize: 24sp
+com.google.android.material.textfield.TextInputLayout dan TextInputEditText untuk:
+Nama (ID: etNama)
+Email (ID: etEmail)
+Password (ID: etPassword)
+Button (ID: btnRegister)
+Fungsi: Tombol "Daftar".
+android:backgroundTint: @color/colorPrimaryGreen
+LinearLayout
+Fungsi: Berisi teks "Sudah punya akun?" dan tautan "Login".
+TextView (ID: tvLoginLink)
+Teks "Login" yang dapat diklik.
+android:textStyle: bold
+
+
+activity_main.xml (Halaman Utama Aplikasi)
+
+Fungsi: Aktivitas utama yang menampung fragmen-fragmen UI lainnya dan navigasi bawah.
+Root Layout: androidx.constraintlayout.widget.ConstraintLayout
+Komponen:
+androidx.fragment.app.FragmentContainerView (ID: fragment_container)
+Fungsi: Wadah untuk menampilkan fragmen (seperti fragment_home, fragment_collection, dll.).
+tools:layout: @layout/fragment_home (menunjukkan fragmen default atau yang akan dimuat).
+com.google.android.material.bottomnavigation.BottomNavigationView (ID: bottom_navigation)
+Fungsi: Navigasi bawah yang memungkinkan pengguna berpindah antar bagian utama aplikasi.
+app:menu: @menu/bottom_navigation_menu (mendefinisikan item-item menu navigasi).
+app:itemIconTint dan app:itemTextColor menggunakan bottom_nav_color_selector untuk pewarnaan ikon dan teks.
+
+
+activity_change_password.xml (Halaman Ganti Kata Sandi)
+
+Fungsi: Memungkinkan pengguna yang sudah login untuk mengubah kata sandi mereka.
+Root Layout: androidx.constraintlayout.widget.ConstraintLayout
+Komponen:
+LinearLayout (ID: layout_change_password)
+Fungsi: Berisi semua elemen di halaman ini.
+LinearLayout (Header Section)
+ImageButton (ID: btnKembali)
+Tombol kembali.
+android:src: @drawable/ic_arrow_back
+android:contentDescription: @string/kembali
+TextView
+Judul "Ganti Password".
+android:text: @string/ganti_password
+android:textSize: 30sp
+com.google.android.material.textfield.TextInputLayout dan TextInputEditText untuk:
+Kata Sandi Lama (ID: etOldPassword)
+Kata Sandi Baru (ID: etNewPassword)
+Konfirmasi Kata Sandi Baru (ID: etConfirmNewPassword)
+Semua input ini memiliki app:startIconDrawable berupa lock dan inputType textPassword.
+Button (ID: btnChangePassword)
+Fungsi: Tombol "Ganti Password".
+android:text: @string/ganti_password
+android:backgroundTint: @color/colorPrimaryGreen
+
+
+activity_edit_profile.xml (Halaman Edit Profil Pengguna)
+
+Fungsi: Memungkinkan pengguna untuk mengedit nama dan email mereka.
+Root Layout: androidx.constraintlayout.widget.ConstraintLayout
+android:background: @color/colorBackgroundLight
+Komponen:
+ImageButton (ID: btn_kembali)
+Tombol kembali.
+android:src: @drawable/ic_arrow_back
+android:contentDescription: @string/kembali
+TextView (ID: tv_judul)
+Fungsi: Judul "Edit Profil".
+android:text: @string/edit_profil
+android:textSize: 30sp
+com.google.android.material.textfield.TextInputLayout (ID: input_layout_nama)
+Fungsi: Input untuk nama.
+com.google.android.material.textfield.TextInputEditText (ID: et_nama)
+android:hint: @string/nama
+android:inputType: textPersonName
+com.google.android.material.textfield.TextInputLayout (ID: input_layout_email)
+Fungsi: Input untuk email.
+com.google.android.material.textfield.TextInputEditText (ID: et_email)
+android:hint: @string/email
+android:inputType: textEmailAddress
+Button (ID: btn_simpan)
+Fungsi: Tombol "Simpan".
+android:text: @string/simpan
+
+
+activity_add_book.xml (Halaman Tambah Buku Baru)
+
+Fungsi: Memungkinkan admin untuk menambahkan buku baru ke sistem.
+Root Layout: androidx.constraintlayout.widget.ConstraintLayout
+android:background: #F7F9FC
+Komponen:
+ImageButton (ID: btn_back)
+Tombol kembali.
+android:src: @drawable/ic_arrow_back
+TextView (ID: tv_title)
+Fungsi: Judul "Tambah Buku Baru".
+android:textSize: 24sp
+ScrollView
+Fungsi: Berisi formulir tambah buku yang dapat digulir.
+LinearLayout di dalamnya berisi:
+com.google.android.material.textfield.TextInputLayout dan TextInputEditText untuk:
+Judul Buku (ID: til_judul, et_judul)
+Penulis (ID: til_penulis, et_penulis)
+Deskripsi (ID: til_deskripsi, et_deskripsi)
+Kategori (ID: til_kategori, et_kategori)
+Harga (ID: til_harga, et_harga)
+Format (ID: til_format, et_format)
+Tanggal Rilis (ID: til_release_date, et_release_date)
+Jumlah Halaman (ID: til_total_pages, et_total_pages)
+ImageView (ID: iv_cover_preview)
+Fungsi: Pratinjau sampul buku.
+android:src: @drawable/placeholder_book_cover
+Button (ID: btn_upload_cover)
+Fungsi: Tombol "Pilih Gambar Cover".
+TextView (ID: fileNameText)
+Menampilkan nama file yang dipilih.
+Button (ID: selectBookFileButton)
+Fungsi: Tombol "Pilih File PDF".
+Button (ID: btn_add_book)
+Fungsi: Tombol "Tambah Buku".
+android:backgroundTint: @color/colorPrimaryGreen
+
+
+activity_admin.xml (Halaman Admin Dashboard)
+
+Fungsi: Dashboard utama untuk admin, menampilkan ringkasan aplikasi dan menu manajemen.
+Root Layout: androidx.constraintlayout.widget.ConstraintLayout
+android:background: #F7F9FC
+Komponen:
+TextView (ID: tv_admin_dashboard_title)
+Fungsi: Judul "Admin Dashboard".
+android:background: ?attr/colorPrimary
+android:textSize: 20sp
+androidx.core.widget.NestedScrollView (ID: admin_dashboard_scroll_view)
+Fungsi: Memungkinkan konten dashboard untuk digulir.
+LinearLayout di dalamnya berisi:
+TextView (ID: tv_ringkasan_aplikasi)
+Fungsi: Judul "Ringkasan Aplikasi".
+GridLayout
+Fungsi: Menampilkan kartu-kartu ringkasan (Total Pengguna, Total Buku, Permintaan Baru, Laporan Baru).
+Setiap kartu adalah androidx.cardview.widget.CardView dengan LinearLayout di dalamnya.
+TextView (contoh: tv_total_pengguna_count)
+Menampilkan angka.
+android:textSize: 24sp
+TextView
+Menjelaskan kategori (contoh: "Total Pengguna").
+TextView (ID: tv_menu_manajemen)
+Fungsi: Judul "Menu Manajemen".
+Button (ID: btn_kelola_pengguna)
+Fungsi: Tombol "KELOLA PENGGUNA".
+android:backgroundTint: @color/colorPrimaryGreen
+Button (ID: btn_kelola_buku)
+Fungsi: Tombol "KELOLA BUKU".
+android:backgroundTint: @color/colorPrimaryGreen
+Button (ID: btn_admin_logout)
+Fungsi: Tombol "LOGOUT".
+android:backgroundTint: @android:color/holo_red_light
+androidx.fragment.app.FragmentContainerView (ID: admin_fragment_container)
+Fungsi: Wadah untuk fragmen manajemen admin (visibility gone by default).
